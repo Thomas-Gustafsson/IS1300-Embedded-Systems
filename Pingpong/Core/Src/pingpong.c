@@ -1,32 +1,35 @@
 /** ******************************************************************************
-@brief
-@file
-@author
+@brief	Pingpong statemachine for Pingpong-program
+@file	pingpong.c
+@author Thomas Gustafsson
 @version 1.0
-@date 12-August-2019
+@date 3-November-2023
 @brief Functions and structures for program Pingpong
-Pingpong statemachine for Pingpong-program pingpong.c
-Bengt Molin
 ****************************************************************************** */
 /* Includes ------------------------------------------------------------------*/
 #include "Pingpong_functions.h"
+#include "gpio.h"
 
 /* Define states for state machine*/
 typedef enum
 {
 	Start,
 	MoveRight,
-	MoveLeft
+	MoveLeft,
+	GameOver
 } states;
 
 static states State, NextState;
 
 void Pingpong(void)
 {
-	bool ButtonPressed; // To remember that button is pressed
+	bool ButtonPressed = false; // To remember that button is pressed
+	bool LeftServe = true;
+	bool RightServe = true; // To remember which players' serve it is
 
 	uint32_t Varv, Speed; // Ball speed
 	uint8_t Led; // LED nr
+	uint8_t LeftScore, RightScore = 0;
 
 	State= Start; // Initiate State to Start
 	NextState= Start;
@@ -41,14 +44,23 @@ void Pingpong(void)
 		{
 			case Start:
 				Led_on(0); // Turn off all LEDs
-				if ( L_hit() == true ) // L serve
+				Speed = 500000;
+				if (LeftScore == 4 || RightScore == 4)
 				{
+					NextState = GameOver;
+				}
+				else if ( L_hit() == true && LeftServe == true) // L serve
+				{
+					LeftServe = false;
+					RightServe = true;
 					Led = 1;
-					NextState= MoveRight;
+					NextState = MoveRight;
 					while ( L_hit() == true ); // wait until button is released
 				}
-				else if ( R_hit() == true ) // R serve
+				else if ( R_hit() == true && RightServe == true) // R serve
 				{
+					LeftServe = true;
+					RightServe = false;
 					Led = 8;
 					NextState= MoveLeft;
 					while ( R_hit() == true ); // wait until button is released
@@ -67,18 +79,27 @@ void Pingpong(void)
 				}
 				if ( ButtonPressed ) // R pressed
 				{
-					if ( Led == 8 ) // and LED8 activa
+					if ( Led == 8 ) // and LED8 active
 					{
 						NextState=MoveLeft; // return ball
 						Led=7;
+						if (Speed >= 250000) Speed = Speed * 0.9;
 					}
 					else
-						NextState = Start; // hit to early
+					{
+						LeftScore++;
+						Show_points(LeftScore, RightScore);
+						NextState = Start; // hit too early
+					}
 				}
 				else
 				{
-					if ( Led == 9 ) // no hit or to late
+					if ( Led == 9 ) // no hit or too late
+					{
+						LeftScore++;
+						Show_points(LeftScore, RightScore);
 						NextState = Start;
+					}
 					else
 						NextState = MoveRight; // ball continues to move right
 				}
@@ -99,16 +120,25 @@ void Pingpong(void)
 				{
 					if ( Led == 1 ) // and LED1 active
 					{
-						NextState=MoveRight; // return ball
+						NextState = MoveRight; // return ball
 						Led=2;
+						if (Speed >= 250000) Speed = Speed * 0.9;
 					}
 					else
-						NextState = Start; // hit to early
+					{
+						RightScore++;
+						Show_points(LeftScore, RightScore);
+						NextState = Start; // hit too early
+					}
 				}
 				else
 				{
-					if ( Led == 0 ) // no hit or to late
+					if ( Led == 0 ) // no hit or too late
+					{
+						RightScore++;
+						Show_points(LeftScore, RightScore);
 						NextState = Start;
+					}
 					else
 						NextState = MoveLeft; // ball continues to move left
 				}
@@ -116,6 +146,13 @@ void Pingpong(void)
 				ButtonPressed=false;
 				}
 			break;
+			case GameOver:
+			{
+				Show_gamepoints(LeftScore, RightScore);
+				LeftScore = 0;
+				RightScore = 0;
+				NextState = Start;
+			}
 			default:
 			break;
 		}

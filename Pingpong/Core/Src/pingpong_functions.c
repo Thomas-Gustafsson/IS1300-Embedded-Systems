@@ -3,7 +3,7 @@
 @file	pingpong_functions.c
 @author	Thomas Gustafsson
 @version 1.0
-@date 13-Nov-2023
+@date 3-Nov-2023
 @brief Functions and structures for program Pingpong ******************************************************************************
 */
 
@@ -95,6 +95,29 @@ void Show_points(uint8_t L_points, uint8_t R_points) {
 	    HAL_Delay(500);
 }
 
+void Show_gamepoints(uint8_t L_points, uint8_t R_points) {
+    	// Define arrays to store GPIO ports and pins for each LED
+        GPIO_TypeDef* LED_GPIO_Port[] = {LED1_GPIO_Port, LED2_GPIO_Port, LED3_GPIO_Port, LED4_GPIO_Port, LED5_GPIO_Port, LED6_GPIO_Port, LED7_GPIO_Port, LED8_GPIO_Port};
+        uint16_t LED_Pin[] = {LED1_Pin, LED2_Pin, LED3_Pin, LED4_Pin, LED5_Pin, LED6_Pin, LED7_Pin, LED8_Pin};
+
+
+        // Display points for player L (from the left side to the middle)
+        for (int i = 0; i < L_points; i++) {
+            HAL_GPIO_WritePin(LED_GPIO_Port[i], LED_Pin[i], GPIO_PIN_SET);
+        }
+
+        // Display points for player R (from the right side to the middle)
+        for (int i = 7; i >= 8 - R_points; i--) {
+            HAL_GPIO_WritePin(LED_GPIO_Port[i], LED_Pin[i], GPIO_PIN_SET);
+        }
+
+        HAL_Delay(5000);
+        // Turn off all LEDs
+        for (int i = 0; i < 8; i++) {
+            HAL_GPIO_WritePin(LED_GPIO_Port[i], LED_Pin[i], GPIO_PIN_RESET);
+        }
+        HAL_Delay(500);
+}
 
 bool L_hit(void)
 { if (HAL_GPIO_ReadPin(L_button_GPIO_Port, L_button_Pin) == 0) return true;

@@ -62888,3 +62888,683 @@ Finished building: default.size.stdout
  
 Finished building: Pingpong.list
  
+14:10:39 **** Incremental Build of configuration Debug for project Pingpong ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/pingpong.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pingpong.d" -MT"Core/Src/pingpong.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pingpong.o"
+arm-none-eabi-gcc "../Core/Src/pingpong_functions.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pingpong_functions.d" -MT"Core/Src/pingpong_functions.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pingpong_functions.o"
+arm-none-eabi-gcc "../Core/Src/test.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/test.d" -MT"Core/Src/test.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/test.o"
+arm-none-eabi-gcc -o "Pingpong.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/thomas/STM32CubeIDE/workspace_1.13.3/Pingpong/STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Pingpong.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Pingpong.elf
+ 
+arm-none-eabi-size   Pingpong.elf 
+arm-none-eabi-objdump -h -S  Pingpong.elf  > "Pingpong.list"
+   text	   data	    bss	    dec	    hex	filename
+   7132	     20	   1572	   8724	   2214	Pingpong.elf
+Finished building: default.size.stdout
+ 
+Finished building: Pingpong.list
+ 
+14:10:50 **** Incremental Build of configuration Debug for project Pingpong ****
+make -j7 all 
+arm-none-eabi-size   Pingpong.elf 
+   text	   data	    bss	    dec	    hex	filename
+   7132	     20	   1572	   8724	   2214	Pingpong.elf
+Finished building: default.size.stdout
+ 
+14:51:19 **** Incremental Build of configuration Debug for project Pingpong ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/pingpong.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pingpong.d" -MT"Core/Src/pingpong.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pingpong.o"
+arm-none-eabi-gcc "../Core/Src/pingpong_functions.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pingpong_functions.d" -MT"Core/Src/pingpong_functions.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pingpong_functions.o"
+../Core/Src/pingpong.c: In function 'Pingpong':
+../Core/Src/pingpong.c:29:28: warning: unused variable 'RightScore' [-Wunused-variable]
+   29 |         uint8_t LeftScore, RightScore = 0;
+      |                            ^~~~~~~~~~
+../Core/Src/pingpong.c:29:17: warning: unused variable 'LeftScore' [-Wunused-variable]
+   29 |         uint8_t LeftScore, RightScore = 0;
+      |                 ^~~~~~~~~
+../Core/Src/pingpong.c:25:25: warning: unused variable 'RightServe' [-Wunused-variable]
+   25 |         bool LeftServe, RightServe; // To remember which players' serve it is
+      |                         ^~~~~~~~~~
+../Core/Src/pingpong.c:25:14: warning: unused variable 'LeftServe' [-Wunused-variable]
+   25 |         bool LeftServe, RightServe; // To remember which players' serve it is
+      |              ^~~~~~~~~
+arm-none-eabi-gcc -o "Pingpong.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/thomas/STM32CubeIDE/workspace_1.13.3/Pingpong/STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Pingpong.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Pingpong.elf
+ 
+arm-none-eabi-size   Pingpong.elf 
+arm-none-eabi-objdump -h -S  Pingpong.elf  > "Pingpong.list"
+   text	   data	    bss	    dec	    hex	filename
+   7140	     20	   1572	   8732	   221c	Pingpong.elf
+Finished building: default.size.stdout
+ 
+Finished building: Pingpong.list
+ 
+14:55:48 **** Incremental Build of configuration Debug for project Pingpong ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/pingpong.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pingpong.d" -MT"Core/Src/pingpong.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pingpong.o"
+../Core/Src/pingpong.c: In function 'Pingpong':
+../Core/Src/pingpong.c:105:41: warning: this 'else' clause does not guard... [-Wmisleading-indentation]
+  105 |                                         else
+      |                                         ^~~~
+../Core/Src/pingpong.c:107:49: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the 'else'
+  107 |                                                 NextState = Start; // hit too early
+      |                                                 ^~~~~~~~~
+../Core/Src/pingpong.c:111:41: warning: this 'if' clause does not guard... [-Wmisleading-indentation]
+  111 |                                         if ( Led == 0 ) // no hit or too late
+      |                                         ^~
+../Core/Src/pingpong.c:113:49: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the 'if'
+  113 |                                                 NextState = Start;
+      |                                                 ^~~~~~~~~
+../Core/Src/pingpong.c:114:41: error: 'else' without a previous 'if'
+  114 |                                         else
+      |                                         ^~~~
+../Core/Src/pingpong.c:29:17: warning: unused variable 'LeftScore' [-Wunused-variable]
+   29 |         uint8_t LeftScore, RightScore = 0;
+      |                 ^~~~~~~~~
+../Core/Src/pingpong.c:25:25: warning: unused variable 'RightServe' [-Wunused-variable]
+   25 |         bool LeftServe, RightServe; // To remember which players' serve it is
+      |                         ^~~~~~~~~~
+../Core/Src/pingpong.c:25:14: warning: unused variable 'LeftServe' [-Wunused-variable]
+   25 |         bool LeftServe, RightServe; // To remember which players' serve it is
+      |              ^~~~~~~~~
+make: *** [Core/Src/subdir.mk:49: Core/Src/pingpong.o] Error 1
+"make -j7 all" terminated with exit code 2. Build might be incomplete.
+14:56:19 **** Incremental Build of configuration Debug for project Pingpong ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/pingpong.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pingpong.d" -MT"Core/Src/pingpong.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pingpong.o"
+../Core/Src/pingpong.c: In function 'Pingpong':
+../Core/Src/pingpong.c:105:41: warning: this 'else' clause does not guard... [-Wmisleading-indentation]
+  105 |                                         else
+      |                                         ^~~~
+../Core/Src/pingpong.c:107:49: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the 'else'
+  107 |                                                 NextState = Start; // hit too early
+      |                                                 ^~~~~~~~~
+../Core/Src/pingpong.c:29:17: warning: unused variable 'LeftScore' [-Wunused-variable]
+   29 |         uint8_t LeftScore, RightScore = 0;
+      |                 ^~~~~~~~~
+../Core/Src/pingpong.c:25:25: warning: unused variable 'RightServe' [-Wunused-variable]
+   25 |         bool LeftServe, RightServe; // To remember which players' serve it is
+      |                         ^~~~~~~~~~
+../Core/Src/pingpong.c:25:14: warning: unused variable 'LeftServe' [-Wunused-variable]
+   25 |         bool LeftServe, RightServe; // To remember which players' serve it is
+      |              ^~~~~~~~~
+arm-none-eabi-gcc -o "Pingpong.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/thomas/STM32CubeIDE/workspace_1.13.3/Pingpong/STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Pingpong.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Pingpong.elf
+ 
+arm-none-eabi-size   Pingpong.elf 
+arm-none-eabi-objdump -h -S  Pingpong.elf  > "Pingpong.list"
+   text	   data	    bss	    dec	    hex	filename
+   7152	     20	   1572	   8744	   2228	Pingpong.elf
+Finished building: default.size.stdout
+ 
+Finished building: Pingpong.list
+ 
+14:56:44 **** Incremental Build of configuration Debug for project Pingpong ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/pingpong.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pingpong.d" -MT"Core/Src/pingpong.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pingpong.o"
+../Core/Src/pingpong.c: In function 'Pingpong':
+../Core/Src/pingpong.c:29:17: warning: unused variable 'LeftScore' [-Wunused-variable]
+   29 |         uint8_t LeftScore, RightScore = 0;
+      |                 ^~~~~~~~~
+../Core/Src/pingpong.c:25:25: warning: unused variable 'RightServe' [-Wunused-variable]
+   25 |         bool LeftServe, RightServe; // To remember which players' serve it is
+      |                         ^~~~~~~~~~
+../Core/Src/pingpong.c:25:14: warning: unused variable 'LeftServe' [-Wunused-variable]
+   25 |         bool LeftServe, RightServe; // To remember which players' serve it is
+      |              ^~~~~~~~~
+arm-none-eabi-gcc -o "Pingpong.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/thomas/STM32CubeIDE/workspace_1.13.3/Pingpong/STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Pingpong.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Pingpong.elf
+ 
+arm-none-eabi-size   Pingpong.elf 
+arm-none-eabi-objdump -h -S  Pingpong.elf  > "Pingpong.list"
+   text	   data	    bss	    dec	    hex	filename
+   7152	     20	   1572	   8744	   2228	Pingpong.elf
+Finished building: default.size.stdout
+ 
+Finished building: Pingpong.list
+ 
+14:58:28 **** Incremental Build of configuration Debug for project Pingpong ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/pingpong.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pingpong.d" -MT"Core/Src/pingpong.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pingpong.o"
+../Core/Src/pingpong.c: In function 'Pingpong':
+../Core/Src/pingpong.c:78:49: warning: implicit declaration of function 'Show_Points'; did you mean 'Show_points'? [-Wimplicit-function-declaration]
+   78 |                                                 Show_Points(LeftScore, RightScore);
+      |                                                 ^~~~~~~~~~~
+      |                                                 Show_points
+../Core/Src/pingpong.c:25:25: warning: unused variable 'RightServe' [-Wunused-variable]
+   25 |         bool LeftServe, RightServe; // To remember which players' serve it is
+      |                         ^~~~~~~~~~
+../Core/Src/pingpong.c:25:14: warning: unused variable 'LeftServe' [-Wunused-variable]
+   25 |         bool LeftServe, RightServe; // To remember which players' serve it is
+      |              ^~~~~~~~~
+../Core/Src/pingpong.c:78:49: warning: 'LeftScore' may be used uninitialized [-Wmaybe-uninitialized]
+   78 |                                                 Show_Points(LeftScore, RightScore);
+      |                                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "Pingpong.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/thomas/STM32CubeIDE/workspace_1.13.3/Pingpong/STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Pingpong.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+/Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.macos64_1.1.1.202309131626/tools/bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/bin/ld: ./Core/Src/pingpong.o: in function `Pingpong':
+/Users/thomas/STM32CubeIDE/workspace_1.13.3/Pingpong/Debug/../Core/Src/pingpong.c:78: undefined reference to `Show_Points'
+/Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.macos64_1.1.1.202309131626/tools/bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/bin/ld: /Users/thomas/STM32CubeIDE/workspace_1.13.3/Pingpong/Debug/../Core/Src/pingpong.c:87: undefined reference to `Show_Points'
+/Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.macos64_1.1.1.202309131626/tools/bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/bin/ld: /Users/thomas/STM32CubeIDE/workspace_1.13.3/Pingpong/Debug/../Core/Src/pingpong.c:116: undefined reference to `Show_Points'
+/Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.macos64_1.1.1.202309131626/tools/bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/bin/ld: /Users/thomas/STM32CubeIDE/workspace_1.13.3/Pingpong/Debug/../Core/Src/pingpong.c:125: undefined reference to `Show_Points'
+collect2: error: ld returned 1 exit status
+make: *** [makefile:64: Pingpong.elf] Error 1
+"make -j7 all" terminated with exit code 2. Build might be incomplete.
+14:59:04 **** Incremental Build of configuration Debug for project Pingpong ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/pingpong.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pingpong.d" -MT"Core/Src/pingpong.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pingpong.o"
+../Core/Src/pingpong.c: In function 'Pingpong':
+../Core/Src/pingpong.c:25:25: warning: unused variable 'RightServe' [-Wunused-variable]
+   25 |         bool LeftServe, RightServe; // To remember which players' serve it is
+      |                         ^~~~~~~~~~
+../Core/Src/pingpong.c:25:14: warning: unused variable 'LeftServe' [-Wunused-variable]
+   25 |         bool LeftServe, RightServe; // To remember which players' serve it is
+      |              ^~~~~~~~~
+../Core/Src/pingpong.c:78:49: warning: 'LeftScore' may be used uninitialized [-Wmaybe-uninitialized]
+   78 |                                                 Show_points(LeftScore, RightScore);
+      |                                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "Pingpong.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/thomas/STM32CubeIDE/workspace_1.13.3/Pingpong/STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Pingpong.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Pingpong.elf
+ 
+arm-none-eabi-size   Pingpong.elf 
+arm-none-eabi-objdump -h -S  Pingpong.elf  > "Pingpong.list"
+   text	   data	    bss	    dec	    hex	filename
+   7684	     20	   1572	   9276	   243c	Pingpong.elf
+Finished building: default.size.stdout
+ 
+Finished building: Pingpong.list
+ 
+14:59:12 **** Incremental Build of configuration Debug for project Pingpong ****
+make -j7 all 
+arm-none-eabi-size   Pingpong.elf 
+   text	   data	    bss	    dec	    hex	filename
+   7684	     20	   1572	   9276	   243c	Pingpong.elf
+Finished building: default.size.stdout
+ 
+14:59:44 **** Incremental Build of configuration Debug for project Pingpong ****
+make -j7 all 
+arm-none-eabi-size   Pingpong.elf 
+   text	   data	    bss	    dec	    hex	filename
+   7684	     20	   1572	   9276	   243c	Pingpong.elf
+Finished building: default.size.stdout
+ 
+14:59:50 **** Incremental Build of configuration Debug for project Pingpong ****
+make -j7 all 
+arm-none-eabi-size   Pingpong.elf 
+   text	   data	    bss	    dec	    hex	filename
+   7684	     20	   1572	   9276	   243c	Pingpong.elf
+Finished building: default.size.stdout
+ 
+15:00:45 **** Incremental Build of configuration Debug for project Pingpong ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/pingpong.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pingpong.d" -MT"Core/Src/pingpong.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pingpong.o"
+../Core/Src/pingpong.c: In function 'Pingpong':
+../Core/Src/pingpong.c:25:25: warning: unused variable 'RightServe' [-Wunused-variable]
+   25 |         bool LeftServe, RightServe; // To remember which players' serve it is
+      |                         ^~~~~~~~~~
+../Core/Src/pingpong.c:25:14: warning: unused variable 'LeftServe' [-Wunused-variable]
+   25 |         bool LeftServe, RightServe; // To remember which players' serve it is
+      |              ^~~~~~~~~
+arm-none-eabi-gcc -o "Pingpong.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/thomas/STM32CubeIDE/workspace_1.13.3/Pingpong/STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Pingpong.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Pingpong.elf
+ 
+arm-none-eabi-size   Pingpong.elf 
+arm-none-eabi-objdump -h -S  Pingpong.elf  > "Pingpong.list"
+   text	   data	    bss	    dec	    hex	filename
+   7684	     20	   1572	   9276	   243c	Pingpong.elf
+Finished building: default.size.stdout
+ 
+Finished building: Pingpong.list
+ 
+15:21:10 **** Incremental Build of configuration Debug for project Pingpong ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/pingpong.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pingpong.d" -MT"Core/Src/pingpong.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pingpong.o"
+../Core/Src/pingpong.c: In function 'Pingpong':
+../Core/Src/pingpong.c:143:33: warning: implicit declaration of function 'HAL_delay' [-Wimplicit-function-declaration]
+  143 |                                 HAL_delay(5000);
+      |                                 ^~~~~~~~~
+../Core/Src/pingpong.c:144:42: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+  144 |                                 LeftScore, RightScore = 0;
+      |                                          ^
+../Core/Src/pingpong.c:26:25: warning: unused variable 'RightServe' [-Wunused-variable]
+   26 |         bool LeftServe, RightServe = false; // To remember which players' serve it is
+      |                         ^~~~~~~~~~
+../Core/Src/pingpong.c:26:14: warning: unused variable 'LeftServe' [-Wunused-variable]
+   26 |         bool LeftServe, RightServe = false; // To remember which players' serve it is
+      |              ^~~~~~~~~
+arm-none-eabi-gcc -o "Pingpong.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/thomas/STM32CubeIDE/workspace_1.13.3/Pingpong/STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Pingpong.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+/Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.macos64_1.1.1.202309131626/tools/bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/bin/ld: ./Core/Src/pingpong.o: in function `Pingpong':
+/Users/thomas/STM32CubeIDE/workspace_1.13.3/Pingpong/Debug/../Core/Src/pingpong.c:143: undefined reference to `HAL_delay'
+collect2: error: ld returned 1 exit status
+make: *** [makefile:64: Pingpong.elf] Error 1
+"make -j7 all" terminated with exit code 2. Build might be incomplete.
+15:21:22 **** Incremental Build of configuration Debug for project Pingpong ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/pingpong.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pingpong.d" -MT"Core/Src/pingpong.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pingpong.o"
+../Core/Src/pingpong.c: In function 'Pingpong':
+../Core/Src/pingpong.c:143:33: warning: implicit declaration of function 'HAL_Delay' [-Wimplicit-function-declaration]
+  143 |                                 HAL_Delay(5000);
+      |                                 ^~~~~~~~~
+../Core/Src/pingpong.c:144:42: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+  144 |                                 LeftScore, RightScore = 0;
+      |                                          ^
+../Core/Src/pingpong.c:26:25: warning: unused variable 'RightServe' [-Wunused-variable]
+   26 |         bool LeftServe, RightServe = false; // To remember which players' serve it is
+      |                         ^~~~~~~~~~
+../Core/Src/pingpong.c:26:14: warning: unused variable 'LeftServe' [-Wunused-variable]
+   26 |         bool LeftServe, RightServe = false; // To remember which players' serve it is
+      |              ^~~~~~~~~
+arm-none-eabi-gcc -o "Pingpong.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/thomas/STM32CubeIDE/workspace_1.13.3/Pingpong/STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Pingpong.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Pingpong.elf
+ 
+arm-none-eabi-size   Pingpong.elf 
+arm-none-eabi-objdump -h -S  Pingpong.elf  > "Pingpong.list"
+   text	   data	    bss	    dec	    hex	filename
+   7748	     20	   1572	   9340	   247c	Pingpong.elf
+Finished building: default.size.stdout
+ 
+Finished building: Pingpong.list
+ 
+15:21:43 **** Incremental Build of configuration Debug for project Pingpong ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/pingpong.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pingpong.d" -MT"Core/Src/pingpong.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pingpong.o"
+../Core/Src/pingpong.c: In function 'Pingpong':
+../Core/Src/pingpong.c:143:33: warning: implicit declaration of function 'HAL_Delay' [-Wimplicit-function-declaration]
+  143 |                                 HAL_Delay(5000);
+      |                                 ^~~~~~~~~
+../Core/Src/pingpong.c:26:25: warning: unused variable 'RightServe' [-Wunused-variable]
+   26 |         bool LeftServe, RightServe = false; // To remember which players' serve it is
+      |                         ^~~~~~~~~~
+../Core/Src/pingpong.c:26:14: warning: unused variable 'LeftServe' [-Wunused-variable]
+   26 |         bool LeftServe, RightServe = false; // To remember which players' serve it is
+      |              ^~~~~~~~~
+arm-none-eabi-gcc -o "Pingpong.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/thomas/STM32CubeIDE/workspace_1.13.3/Pingpong/STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Pingpong.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Pingpong.elf
+ 
+arm-none-eabi-size   Pingpong.elf 
+arm-none-eabi-objdump -h -S  Pingpong.elf  > "Pingpong.list"
+   text	   data	    bss	    dec	    hex	filename
+   7752	     20	   1572	   9344	   2480	Pingpong.elf
+Finished building: default.size.stdout
+ 
+Finished building: Pingpong.list
+ 
+15:22:13 **** Incremental Build of configuration Debug for project Pingpong ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/pingpong.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pingpong.d" -MT"Core/Src/pingpong.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pingpong.o"
+../Core/Src/pingpong.c: In function 'Pingpong':
+../Core/Src/pingpong.c:27:25: warning: unused variable 'RightServe' [-Wunused-variable]
+   27 |         bool LeftServe, RightServe = false; // To remember which players' serve it is
+      |                         ^~~~~~~~~~
+../Core/Src/pingpong.c:27:14: warning: unused variable 'LeftServe' [-Wunused-variable]
+   27 |         bool LeftServe, RightServe = false; // To remember which players' serve it is
+      |              ^~~~~~~~~
+arm-none-eabi-gcc -o "Pingpong.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/thomas/STM32CubeIDE/workspace_1.13.3/Pingpong/STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Pingpong.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Pingpong.elf
+ 
+arm-none-eabi-size   Pingpong.elf 
+arm-none-eabi-objdump -h -S  Pingpong.elf  > "Pingpong.list"
+   text	   data	    bss	    dec	    hex	filename
+   7752	     20	   1572	   9344	   2480	Pingpong.elf
+Finished building: default.size.stdout
+ 
+Finished building: Pingpong.list
+ 
+15:22:24 **** Incremental Build of configuration Debug for project Pingpong ****
+make -j7 all 
+arm-none-eabi-size   Pingpong.elf 
+   text	   data	    bss	    dec	    hex	filename
+   7752	     20	   1572	   9344	   2480	Pingpong.elf
+Finished building: default.size.stdout
+ 
+15:24:06 **** Incremental Build of configuration Debug for project Pingpong ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/pingpong.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pingpong.d" -MT"Core/Src/pingpong.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pingpong.o"
+../Core/Src/pingpong.c: In function 'Pingpong':
+../Core/Src/pingpong.c:27:25: warning: unused variable 'RightServe' [-Wunused-variable]
+   27 |         bool LeftServe, RightServe = false; // To remember which players' serve it is
+      |                         ^~~~~~~~~~
+../Core/Src/pingpong.c:27:14: warning: unused variable 'LeftServe' [-Wunused-variable]
+   27 |         bool LeftServe, RightServe = false; // To remember which players' serve it is
+      |              ^~~~~~~~~
+arm-none-eabi-gcc -o "Pingpong.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/thomas/STM32CubeIDE/workspace_1.13.3/Pingpong/STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Pingpong.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Pingpong.elf
+ 
+arm-none-eabi-size   Pingpong.elf 
+arm-none-eabi-objdump -h -S  Pingpong.elf  > "Pingpong.list"
+   text	   data	    bss	    dec	    hex	filename
+   7752	     20	   1572	   9344	   2480	Pingpong.elf
+Finished building: default.size.stdout
+ 
+Finished building: Pingpong.list
+ 
+15:24:12 **** Incremental Build of configuration Debug for project Pingpong ****
+make -j7 all 
+arm-none-eabi-size   Pingpong.elf 
+   text	   data	    bss	    dec	    hex	filename
+   7752	     20	   1572	   9344	   2480	Pingpong.elf
+Finished building: default.size.stdout
+ 
+15:26:51 **** Incremental Build of configuration Debug for project Pingpong ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/pingpong.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pingpong.d" -MT"Core/Src/pingpong.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pingpong.o"
+../Core/Src/pingpong.c: In function 'Pingpong':
+../Core/Src/pingpong.c:27:25: warning: unused variable 'RightServe' [-Wunused-variable]
+   27 |         bool LeftServe, RightServe = false; // To remember which players' serve it is
+      |                         ^~~~~~~~~~
+../Core/Src/pingpong.c:27:14: warning: unused variable 'LeftServe' [-Wunused-variable]
+   27 |         bool LeftServe, RightServe = false; // To remember which players' serve it is
+      |              ^~~~~~~~~
+arm-none-eabi-gcc -o "Pingpong.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/thomas/STM32CubeIDE/workspace_1.13.3/Pingpong/STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Pingpong.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Pingpong.elf
+ 
+arm-none-eabi-size   Pingpong.elf 
+arm-none-eabi-objdump -h -S  Pingpong.elf  > "Pingpong.list"
+   text	   data	    bss	    dec	    hex	filename
+   7768	     20	   1572	   9360	   2490	Pingpong.elf
+Finished building: default.size.stdout
+ 
+Finished building: Pingpong.list
+ 
+15:26:58 **** Incremental Build of configuration Debug for project Pingpong ****
+make -j7 all 
+arm-none-eabi-size   Pingpong.elf 
+   text	   data	    bss	    dec	    hex	filename
+   7768	     20	   1572	   9360	   2490	Pingpong.elf
+Finished building: default.size.stdout
+ 
+15:28:55 **** Incremental Build of configuration Debug for project Pingpong ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/pingpong.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pingpong.d" -MT"Core/Src/pingpong.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pingpong.o"
+../Core/Src/pingpong.c: In function 'Pingpong':
+../Core/Src/pingpong.c:84:54: error: 'test' undeclared (first use in this function)
+   84 |                                                 if (!test) Show_points(LeftScore, RightScore);
+      |                                                      ^~~~
+../Core/Src/pingpong.c:84:54: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/pingpong.c:27:25: warning: unused variable 'RightServe' [-Wunused-variable]
+   27 |         bool LeftServe, RightServe = false; // To remember which players' serve it is
+      |                         ^~~~~~~~~~
+../Core/Src/pingpong.c:27:14: warning: unused variable 'LeftServe' [-Wunused-variable]
+   27 |         bool LeftServe, RightServe = false; // To remember which players' serve it is
+      |              ^~~~~~~~~
+make: *** [Core/Src/subdir.mk:49: Core/Src/pingpong.o] Error 1
+"make -j7 all" terminated with exit code 2. Build might be incomplete.
+15:29:19 **** Incremental Build of configuration Debug for project Pingpong ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/pingpong.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pingpong.d" -MT"Core/Src/pingpong.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pingpong.o"
+../Core/Src/pingpong.c: In function 'Pingpong':
+../Core/Src/pingpong.c:27:25: warning: unused variable 'RightServe' [-Wunused-variable]
+   27 |         bool LeftServe, RightServe = false; // To remember which players' serve it is
+      |                         ^~~~~~~~~~
+../Core/Src/pingpong.c:27:14: warning: unused variable 'LeftServe' [-Wunused-variable]
+   27 |         bool LeftServe, RightServe = false; // To remember which players' serve it is
+      |              ^~~~~~~~~
+arm-none-eabi-gcc -o "Pingpong.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/thomas/STM32CubeIDE/workspace_1.13.3/Pingpong/STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Pingpong.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Pingpong.elf
+ 
+arm-none-eabi-size   Pingpong.elf 
+arm-none-eabi-objdump -h -S  Pingpong.elf  > "Pingpong.list"
+   text	   data	    bss	    dec	    hex	filename
+   7816	     20	   1572	   9408	   24c0	Pingpong.elf
+Finished building: default.size.stdout
+ 
+Finished building: Pingpong.list
+ 
+15:30:51 **** Incremental Build of configuration Debug for project Pingpong ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/pingpong.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pingpong.d" -MT"Core/Src/pingpong.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pingpong.o"
+../Core/Src/pingpong.c: In function 'Pingpong':
+../Core/Src/pingpong.c:27:25: warning: unused variable 'RightServe' [-Wunused-variable]
+   27 |         bool LeftServe, RightServe = false; // To remember which players' serve it is
+      |                         ^~~~~~~~~~
+../Core/Src/pingpong.c:27:14: warning: unused variable 'LeftServe' [-Wunused-variable]
+   27 |         bool LeftServe, RightServe = false; // To remember which players' serve it is
+      |              ^~~~~~~~~
+arm-none-eabi-gcc -o "Pingpong.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/thomas/STM32CubeIDE/workspace_1.13.3/Pingpong/STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Pingpong.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Pingpong.elf
+ 
+arm-none-eabi-size   Pingpong.elf 
+arm-none-eabi-objdump -h -S  Pingpong.elf  > "Pingpong.list"
+   text	   data	    bss	    dec	    hex	filename
+   7820	     20	   1572	   9412	   24c4	Pingpong.elf
+Finished building: default.size.stdout
+ 
+Finished building: Pingpong.list
+ 
+15:39:23 **** Incremental Build of configuration Debug for project Pingpong ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/pingpong.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pingpong.d" -MT"Core/Src/pingpong.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pingpong.o"
+../Core/Src/pingpong.c: In function 'Pingpong':
+../Core/Src/pingpong.c:27:25: warning: unused variable 'RightServe' [-Wunused-variable]
+   27 |         bool LeftServe, RightServe = false; // To remember which players' serve it is
+      |                         ^~~~~~~~~~
+../Core/Src/pingpong.c:27:14: warning: unused variable 'LeftServe' [-Wunused-variable]
+   27 |         bool LeftServe, RightServe = false; // To remember which players' serve it is
+      |              ^~~~~~~~~
+arm-none-eabi-gcc -o "Pingpong.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/thomas/STM32CubeIDE/workspace_1.13.3/Pingpong/STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Pingpong.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Pingpong.elf
+ 
+arm-none-eabi-size   Pingpong.elf 
+arm-none-eabi-objdump -h -S  Pingpong.elf  > "Pingpong.list"
+   text	   data	    bss	    dec	    hex	filename
+   7812	     20	   1572	   9404	   24bc	Pingpong.elf
+Finished building: default.size.stdout
+ 
+Finished building: Pingpong.list
+ 
+15:39:29 **** Incremental Build of configuration Debug for project Pingpong ****
+make -j7 all 
+arm-none-eabi-size   Pingpong.elf 
+   text	   data	    bss	    dec	    hex	filename
+   7812	     20	   1572	   9404	   24bc	Pingpong.elf
+Finished building: default.size.stdout
+ 
+15:39:36 **** Incremental Build of configuration Debug for project Pingpong ****
+make -j7 all 
+arm-none-eabi-size   Pingpong.elf 
+   text	   data	    bss	    dec	    hex	filename
+   7812	     20	   1572	   9404	   24bc	Pingpong.elf
+Finished building: default.size.stdout
+ 
+15:51:39 **** Incremental Build of configuration Debug for project Pingpong ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/pingpong.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pingpong.d" -MT"Core/Src/pingpong.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pingpong.o"
+arm-none-eabi-gcc "../Core/Src/pingpong_functions.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pingpong_functions.d" -MT"Core/Src/pingpong_functions.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pingpong_functions.o"
+arm-none-eabi-gcc "../Core/Src/test.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/test.d" -MT"Core/Src/test.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/test.o"
+../Core/Src/pingpong.c: In function 'Pingpong':
+../Core/Src/pingpong.c:27:25: warning: unused variable 'RightServe' [-Wunused-variable]
+   27 |         bool LeftServe, RightServe = false; // To remember which players' serve it is
+      |                         ^~~~~~~~~~
+../Core/Src/pingpong.c:27:14: warning: unused variable 'LeftServe' [-Wunused-variable]
+   27 |         bool LeftServe, RightServe = false; // To remember which players' serve it is
+      |              ^~~~~~~~~
+arm-none-eabi-gcc -o "Pingpong.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/thomas/STM32CubeIDE/workspace_1.13.3/Pingpong/STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Pingpong.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Pingpong.elf
+ 
+arm-none-eabi-size   Pingpong.elf 
+arm-none-eabi-objdump -h -S  Pingpong.elf  > "Pingpong.list"
+   text	   data	    bss	    dec	    hex	filename
+   7984	     20	   1572	   9576	   2568	Pingpong.elf
+Finished building: default.size.stdout
+ 
+Finished building: Pingpong.list
+ 
+15:56:41 **** Incremental Build of configuration Debug for project Pingpong ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/pingpong.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pingpong.d" -MT"Core/Src/pingpong.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pingpong.o"
+../Core/Src/pingpong.c: In function 'Pingpong':
+../Core/Src/pingpong.c:50:75: error: 'True' undeclared (first use in this function); did you mean 'true'?
+   50 |                                 else if ( L_hit() == true && LeftServe == True) // L serve
+      |                                                                           ^~~~
+      |                                                                           true
+../Core/Src/pingpong.c:50:75: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/pingpong.c:52:53: error: 'False' undeclared (first use in this function); did you mean 'false'?
+   52 |                                         LeftServe = False;
+      |                                                     ^~~~~
+      |                                                     false
+make: *** [Core/Src/subdir.mk:49: Core/Src/pingpong.o] Error 1
+"make -j7 all" terminated with exit code 2. Build might be incomplete.
+15:57:08 **** Incremental Build of configuration Debug for project Pingpong ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/pingpong.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pingpong.d" -MT"Core/Src/pingpong.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pingpong.o"
+../Core/Src/pingpong.c: In function 'Pingpong':
+../Core/Src/pingpong.c:58:76: error: 'True' undeclared (first use in this function); did you mean 'true'?
+   58 |                                 else if ( R_hit() == true && RightServe == True) // R serve
+      |                                                                            ^~~~
+      |                                                                            true
+../Core/Src/pingpong.c:58:76: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Core/Src/subdir.mk:49: Core/Src/pingpong.o] Error 1
+"make -j7 all" terminated with exit code 2. Build might be incomplete.
+15:57:14 **** Incremental Build of configuration Debug for project Pingpong ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/pingpong.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pingpong.d" -MT"Core/Src/pingpong.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pingpong.o"
+arm-none-eabi-gcc -o "Pingpong.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/thomas/STM32CubeIDE/workspace_1.13.3/Pingpong/STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Pingpong.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Pingpong.elf
+ 
+arm-none-eabi-size   Pingpong.elf 
+arm-none-eabi-objdump -h -S  Pingpong.elf  > "Pingpong.list"
+   text	   data	    bss	    dec	    hex	filename
+   8016	     20	   1572	   9608	   2588	Pingpong.elf
+Finished building: default.size.stdout
+ 
+Finished building: Pingpong.list
+ 
+15:57:19 **** Incremental Build of configuration Debug for project Pingpong ****
+make -j7 all 
+arm-none-eabi-size   Pingpong.elf 
+   text	   data	    bss	    dec	    hex	filename
+   8016	     20	   1572	   9608	   2588	Pingpong.elf
+Finished building: default.size.stdout
+ 
+15:57:24 **** Incremental Build of configuration Debug for project Pingpong ****
+make -j7 all 
+arm-none-eabi-size   Pingpong.elf 
+   text	   data	    bss	    dec	    hex	filename
+   8016	     20	   1572	   9608	   2588	Pingpong.elf
+Finished building: default.size.stdout
+ 
+15:58:11 **** Incremental Build of configuration Debug for project Pingpong ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/pingpong.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pingpong.d" -MT"Core/Src/pingpong.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pingpong.o"
+arm-none-eabi-gcc -o "Pingpong.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/thomas/STM32CubeIDE/workspace_1.13.3/Pingpong/STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Pingpong.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Pingpong.elf
+ 
+arm-none-eabi-size   Pingpong.elf 
+arm-none-eabi-objdump -h -S  Pingpong.elf  > "Pingpong.list"
+   text	   data	    bss	    dec	    hex	filename
+   8016	     20	   1572	   9608	   2588	Pingpong.elf
+Finished building: default.size.stdout
+ 
+Finished building: Pingpong.list
+ 
+15:58:17 **** Incremental Build of configuration Debug for project Pingpong ****
+make -j7 all 
+arm-none-eabi-size   Pingpong.elf 
+   text	   data	    bss	    dec	    hex	filename
+   8016	     20	   1572	   9608	   2588	Pingpong.elf
+Finished building: default.size.stdout
+ 
+15:59:23 **** Incremental Build of configuration Debug for project Pingpong ****
+make -j7 all 
+arm-none-eabi-size   Pingpong.elf 
+   text	   data	    bss	    dec	    hex	filename
+   8016	     20	   1572	   9608	   2588	Pingpong.elf
+Finished building: default.size.stdout
+ 
+16:00:36 **** Incremental Build of configuration Debug for project Pingpong ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/pingpong.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pingpong.d" -MT"Core/Src/pingpong.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pingpong.o"
+arm-none-eabi-gcc -o "Pingpong.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/thomas/STM32CubeIDE/workspace_1.13.3/Pingpong/STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Pingpong.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Pingpong.elf
+ 
+arm-none-eabi-size   Pingpong.elf 
+arm-none-eabi-objdump -h -S  Pingpong.elf  > "Pingpong.list"
+   text	   data	    bss	    dec	    hex	filename
+   8020	     20	   1572	   9612	   258c	Pingpong.elf
+Finished building: default.size.stdout
+ 
+Finished building: Pingpong.list
+ 
+16:03:29 **** Incremental Build of configuration Debug for project Pingpong ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/pingpong.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pingpong.d" -MT"Core/Src/pingpong.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pingpong.o"
+arm-none-eabi-gcc -o "Pingpong.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/thomas/STM32CubeIDE/workspace_1.13.3/Pingpong/STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Pingpong.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Pingpong.elf
+ 
+arm-none-eabi-size   Pingpong.elf 
+arm-none-eabi-objdump -h -S  Pingpong.elf  > "Pingpong.list"
+   text	   data	    bss	    dec	    hex	filename
+   8060	     20	   1572	   9652	   25b4	Pingpong.elf
+Finished building: default.size.stdout
+ 
+Finished building: Pingpong.list
+ 
+16:05:54 **** Incremental Build of configuration Debug for project Pingpong ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/pingpong.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pingpong.d" -MT"Core/Src/pingpong.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pingpong.o"
+arm-none-eabi-gcc -o "Pingpong.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/thomas/STM32CubeIDE/workspace_1.13.3/Pingpong/STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Pingpong.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Pingpong.elf
+ 
+arm-none-eabi-size   Pingpong.elf 
+arm-none-eabi-objdump -h -S  Pingpong.elf  > "Pingpong.list"
+   text	   data	    bss	    dec	    hex	filename
+   8040	     20	   1572	   9632	   25a0	Pingpong.elf
+Finished building: default.size.stdout
+ 
+Finished building: Pingpong.list
+ 
+16:09:24 **** Incremental Build of configuration Debug for project Pingpong ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/pingpong.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pingpong.d" -MT"Core/Src/pingpong.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pingpong.o"
+arm-none-eabi-gcc -o "Pingpong.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/thomas/STM32CubeIDE/workspace_1.13.3/Pingpong/STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Pingpong.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Pingpong.elf
+ 
+arm-none-eabi-size   Pingpong.elf 
+arm-none-eabi-objdump -h -S  Pingpong.elf  > "Pingpong.list"
+   text	   data	    bss	    dec	    hex	filename
+   9636	     20	   1572	  11228	   2bdc	Pingpong.elf
+Finished building: default.size.stdout
+ 
+Finished building: Pingpong.list
+ 
+16:09:43 **** Incremental Build of configuration Debug for project Pingpong ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/pingpong.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pingpong.d" -MT"Core/Src/pingpong.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pingpong.o"
+arm-none-eabi-gcc -o "Pingpong.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/thomas/STM32CubeIDE/workspace_1.13.3/Pingpong/STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Pingpong.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Pingpong.elf
+ 
+arm-none-eabi-size   Pingpong.elf 
+arm-none-eabi-objdump -h -S  Pingpong.elf  > "Pingpong.list"
+   text	   data	    bss	    dec	    hex	filename
+   9668	     20	   1572	  11260	   2bfc	Pingpong.elf
+Finished building: default.size.stdout
+ 
+Finished building: Pingpong.list
+ 
+16:11:35 **** Incremental Build of configuration Debug for project Pingpong ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/pingpong.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pingpong.d" -MT"Core/Src/pingpong.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pingpong.o"
+arm-none-eabi-gcc -o "Pingpong.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/thomas/STM32CubeIDE/workspace_1.13.3/Pingpong/STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Pingpong.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Pingpong.elf
+ 
+arm-none-eabi-size   Pingpong.elf 
+arm-none-eabi-objdump -h -S  Pingpong.elf  > "Pingpong.list"
+   text	   data	    bss	    dec	    hex	filename
+   9668	     20	   1572	  11260	   2bfc	Pingpong.elf
+Finished building: default.size.stdout
+ 
+Finished building: Pingpong.list
+ 
+16:13:17 **** Incremental Build of configuration Debug for project Pingpong ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/pingpong.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pingpong.d" -MT"Core/Src/pingpong.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pingpong.o"
+arm-none-eabi-gcc -o "Pingpong.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/thomas/STM32CubeIDE/workspace_1.13.3/Pingpong/STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Pingpong.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Pingpong.elf
+ 
+arm-none-eabi-size   Pingpong.elf 
+arm-none-eabi-objdump -h -S  Pingpong.elf  > "Pingpong.list"
+   text	   data	    bss	    dec	    hex	filename
+   9668	     20	   1572	  11260	   2bfc	Pingpong.elf
+Finished building: default.size.stdout
+ 
+Finished building: Pingpong.list
+ 
