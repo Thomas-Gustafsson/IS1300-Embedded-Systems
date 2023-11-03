@@ -1,0 +1,25 @@
+/*
+ * pingpong_functions.h
+ *
+ *  Created on: Nov 3, 2023
+ *      Author: thomas
+ */
+#include "stdbool.h"
+
+#ifndef INC_PINGPONG_FUNCTIONS_H_
+#define INC_PINGPONG_FUNCTIONS_H_
+
+/**
+@brief L_hit, check if L button is pressed
+@param void
+@return bool, true if L button pushed, false otherwise */
+bool L_hit(void);
+/**
+@brief R_hit, check if R button is pressed
+@param void
+@return bool, true if R button pushed, false otherwise */
+bool R_hit(void);
+
+void Show_points(uint8_t L_points, uint8_t R_points);
+
+#endif /* INC_PINGPONG_FUNCTIONS_H_ */

@@ -1,0 +1,4 @@
+../Core/Src/test.c:14:6:Test_program	8	static
+../Core/Src/test.c:20:6:Test_Led	16	static
+../Core/Src/test.c:30:6:Test_Points	8	static
+../Core/Src/test.c:34:6:Test_Buttons	16	static

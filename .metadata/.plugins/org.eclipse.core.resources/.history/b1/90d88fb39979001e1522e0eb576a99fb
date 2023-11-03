@@ -1,0 +1,13 @@
+/*
+ * pingpong_functions.c
+ *
+ *  Created on: Nov 2, 2023
+ *      Author: thomas
+ */
+
+#include <stdint.h>
+#include "Test.h"
+
+void Led_on(uint8_t Lednr) {
+return;
+} // End of function Led_on

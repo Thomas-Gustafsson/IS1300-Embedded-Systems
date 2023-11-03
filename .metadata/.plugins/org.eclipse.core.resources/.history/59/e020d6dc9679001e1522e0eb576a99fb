@@ -1,0 +1,13 @@
+/*
+ * Pingpong_functions.h
+ *
+ *  Created on: Nov 2, 2023
+ *      Author: thomas
+ */
+
+#ifndef INC_PINGPONG_FUNCTIONS_H_
+#define INC_PINGPONG_FUNCTIONS_H_
+
+void Led_on(uint8_t Lednr);
+
+#endif /* INC_PINGPONG_FUNCTIONS_H_ */

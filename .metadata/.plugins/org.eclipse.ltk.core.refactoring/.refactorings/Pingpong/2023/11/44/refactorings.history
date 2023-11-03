@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;Pingpong/Core/Inc/pingpong_functions.h&apos; to &apos;Pingpong_functions.h&apos;" description="Rename resource &apos;pingpong_functions.h&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Core/Inc/pingpong_functions.h" name="Pingpong_functions.h" stamp="1699008485862" updateReferences="true"/>
+</session>

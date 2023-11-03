@@ -1,0 +1,10 @@
+12:00:58 **** Incremental Build of configuration Debug for project Pingpong ****
+make -j7 all 
+arm-none-eabi-size   Pingpong.elf 
+   text	   data	    bss	    dec	    hex	filename
+   7000	     20	   1572	   8592	   2190	Pingpong.elf
+Finished building: default.size.stdout
+ 
+
+12:00:58 Build Finished. 0 errors, 0 warnings. (took 261ms)
+

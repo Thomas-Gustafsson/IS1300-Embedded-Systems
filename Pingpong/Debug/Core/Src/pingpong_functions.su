@@ -1,0 +1,4 @@
+../Core/Src/pingpong_functions.c:19:6:Led_on	24	static
+../Core/Src/pingpong_functions.c:68:6:Show_points	96	static
+../Core/Src/pingpong_functions.c:106:6:L_hit	8	static
+../Core/Src/pingpong_functions.c:110:6:R_hit	8	static
