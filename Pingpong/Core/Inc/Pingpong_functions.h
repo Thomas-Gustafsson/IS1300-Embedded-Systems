@@ -5,6 +5,7 @@
  *      Author: thomas
  */
 #include "stdbool.h"
+#include <stdint.h>
 
 #ifndef INC_PINGPONG_FUNCTIONS_H_
 #define INC_PINGPONG_FUNCTIONS_H_

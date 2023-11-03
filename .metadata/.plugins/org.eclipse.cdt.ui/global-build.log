@@ -62758,3 +62758,133 @@ arm-none-eabi-size   Pingpong.elf
    7000	     20	   1572	   8592	   2190	Pingpong.elf
 Finished building: default.size.stdout
  
+13:41:29 **** Incremental Build of configuration Debug for project Pingpong ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/pingpong.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pingpong.d" -MT"Core/Src/pingpong.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pingpong.o"
+arm-none-eabi-gcc "../Core/Src/pingpong_functions.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pingpong_functions.d" -MT"Core/Src/pingpong_functions.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pingpong_functions.o"
+arm-none-eabi-gcc "../Core/Src/test.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/test.d" -MT"Core/Src/test.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/test.o"
+In file included from ../Core/Src/pingpong.c:12:
+../Core/Inc/Pingpong_functions.h:28:18: error: unknown type name 'uint8_t'
+   28 | void Show_points(uint8_t L_points, uint8_t R_points);
+      |                  ^~~~~~~
+../Core/Inc/Pingpong_functions.h:8:1: note: 'uint8_t' is defined in header '<stdint.h>'; did you forget to '#include <stdint.h>'?
+    7 | #include "stdbool.h"
+  +++ |+#include <stdint.h>
+    8 | 
+../Core/Inc/Pingpong_functions.h:28:36: error: unknown type name 'uint8_t'
+   28 | void Show_points(uint8_t L_points, uint8_t R_points);
+      |                                    ^~~~~~~
+../Core/Inc/Pingpong_functions.h:28:36: note: 'uint8_t' is defined in header '<stdint.h>'; did you forget to '#include <stdint.h>'?
+../Core/Src/pingpong.c: In function 'Pingpong':
+../Core/Src/pingpong.c:27:9: error: unknown type name 'uint32_t'
+   27 |         uint32_t Varv, Speed; // Ball speed
+      |         ^~~~~~~~
+../Core/Src/pingpong.c:13:1: note: 'uint32_t' is defined in header '<stdint.h>'; did you forget to '#include <stdint.h>'?
+   12 | #include "Pingpong_functions.h"
+  +++ |+#include <stdint.h>
+   13 | /* Define states for state machine*/
+../Core/Src/pingpong.c:28:9: error: unknown type name 'uint8_t'
+   28 |         uint8_t Led; // LED nr
+      |         ^~~~~~~
+../Core/Src/pingpong.c:28:9: note: 'uint8_t' is defined in header '<stdint.h>'; did you forget to '#include <stdint.h>'?
+../Core/Src/pingpong.c:42:33: warning: implicit declaration of function 'Led_on' [-Wimplicit-function-declaration]
+   42 |                                 Led_on(0); // Turn off all LEDs
+      |                                 ^~~~~~
+make: *** [Core/Src/subdir.mk:49: Core/Src/pingpong.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j7 all" terminated with exit code 2. Build might be incomplete.
+13:42:48 **** Incremental Build of configuration Debug for project Pingpong ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/pingpong.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pingpong.d" -MT"Core/Src/pingpong.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pingpong.o"
+arm-none-eabi-gcc "../Core/Src/pingpong_functions.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pingpong_functions.d" -MT"Core/Src/pingpong_functions.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pingpong_functions.o"
+arm-none-eabi-gcc "../Core/Src/test.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/test.d" -MT"Core/Src/test.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/test.o"
+../Core/Src/pingpong.c: In function 'Pingpong':
+../Core/Src/pingpong.c:43:33: warning: implicit declaration of function 'Led_on' [-Wimplicit-function-declaration]
+   43 |                                 Led_on(0); // Turn off all LEDs
+      |                                 ^~~~~~
+arm-none-eabi-gcc -o "Pingpong.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/thomas/STM32CubeIDE/workspace_1.13.3/Pingpong/STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Pingpong.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Pingpong.elf
+ 
+arm-none-eabi-size   Pingpong.elf 
+arm-none-eabi-objdump -h -S  Pingpong.elf  > "Pingpong.list"
+   text	   data	    bss	    dec	    hex	filename
+   7000	     20	   1572	   8592	   2190	Pingpong.elf
+Finished building: default.size.stdout
+ 
+Finished building: Pingpong.list
+ 
+13:43:02 **** Incremental Build of configuration Debug for project Pingpong ****
+make -j7 all 
+arm-none-eabi-size   Pingpong.elf 
+   text	   data	    bss	    dec	    hex	filename
+   7000	     20	   1572	   8592	   2190	Pingpong.elf
+Finished building: default.size.stdout
+ 
+13:44:00 **** Incremental Build of configuration Debug for project Pingpong ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "Pingpong.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/thomas/STM32CubeIDE/workspace_1.13.3/Pingpong/STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Pingpong.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Pingpong.elf
+ 
+arm-none-eabi-size   Pingpong.elf 
+arm-none-eabi-objdump -h -S  Pingpong.elf  > "Pingpong.list"
+   text	   data	    bss	    dec	    hex	filename
+   7132	     20	   1572	   8724	   2214	Pingpong.elf
+Finished building: default.size.stdout
+ 
+Finished building: Pingpong.list
+ 
+13:45:43 **** Incremental Build of configuration Debug for project Pingpong ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/pingpong.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pingpong.d" -MT"Core/Src/pingpong.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pingpong.o"
+../Core/Src/pingpong.c: In function 'Pingpong':
+../Core/Src/pingpong.c:43:33: warning: implicit declaration of function 'Led_on' [-Wimplicit-function-declaration]
+   43 |                                 Led_on(0); // Turn off all LEDs
+      |                                 ^~~~~~
+arm-none-eabi-gcc -o "Pingpong.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/thomas/STM32CubeIDE/workspace_1.13.3/Pingpong/STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Pingpong.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Pingpong.elf
+ 
+arm-none-eabi-size   Pingpong.elf 
+arm-none-eabi-objdump -h -S  Pingpong.elf  > "Pingpong.list"
+   text	   data	    bss	    dec	    hex	filename
+   7132	     20	   1572	   8724	   2214	Pingpong.elf
+Finished building: default.size.stdout
+ 
+Finished building: Pingpong.list
+ 
+13:48:24 **** Incremental Build of configuration Debug for project Pingpong ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/pingpong.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pingpong.d" -MT"Core/Src/pingpong.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pingpong.o"
+../Core/Src/pingpong.c: In function 'Pingpong':
+../Core/Src/pingpong.c:43:33: warning: implicit declaration of function 'Led_on' [-Wimplicit-function-declaration]
+   43 |                                 Led_on(0); // Turn off all LEDs
+      |                                 ^~~~~~
+arm-none-eabi-gcc -o "Pingpong.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/thomas/STM32CubeIDE/workspace_1.13.3/Pingpong/STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Pingpong.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Pingpong.elf
+ 
+arm-none-eabi-size   Pingpong.elf 
+arm-none-eabi-objdump -h -S  Pingpong.elf  > "Pingpong.list"
+   text	   data	    bss	    dec	    hex	filename
+   7132	     20	   1572	   8724	   2214	Pingpong.elf
+Finished building: default.size.stdout
+ 
+Finished building: Pingpong.list
+ 
+13:50:00 **** Incremental Build of configuration Debug for project Pingpong ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/pingpong.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pingpong.d" -MT"Core/Src/pingpong.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pingpong.o"
+../Core/Src/pingpong.c: In function 'Pingpong':
+../Core/Src/pingpong.c:43:33: warning: implicit declaration of function 'Led_on' [-Wimplicit-function-declaration]
+   43 |                                 Led_on(0); // Turn off all LEDs
+      |                                 ^~~~~~
+arm-none-eabi-gcc -o "Pingpong.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/thomas/STM32CubeIDE/workspace_1.13.3/Pingpong/STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Pingpong.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Pingpong.elf
+ 
+arm-none-eabi-size   Pingpong.elf 
+arm-none-eabi-objdump -h -S  Pingpong.elf  > "Pingpong.list"
+   text	   data	    bss	    dec	    hex	filename
+   7132	     20	   1572	   8724	   2214	Pingpong.elf
+Finished building: default.size.stdout
+ 
+Finished building: Pingpong.list
+ 
