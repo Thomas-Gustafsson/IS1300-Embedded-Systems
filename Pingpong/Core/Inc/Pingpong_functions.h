@@ -5,6 +5,7 @@
  *      Author: thomas
  */
 #include "stdbool.h"
+#include <stdint.h>
 
 #ifndef INC_PINGPONG_FUNCTIONS_H_
 #define INC_PINGPONG_FUNCTIONS_H_
@@ -26,5 +27,8 @@ bool R_hit(void);
 @return void, no return value
 */
 void Show_points(uint8_t L_points, uint8_t R_points);
+void Show_gamepoints(uint8_t L_points, uint8_t R_points);
+
+void Led_on(uint8_t Lednr);
 
 #endif /* INC_PINGPONG_FUNCTIONS_H_ */
