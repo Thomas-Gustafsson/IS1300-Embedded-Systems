@@ -29,7 +29,8 @@ void Pingpong(void)
 
 	uint32_t Varv, Speed; // Ball speed
 	uint8_t Led; // LED nr
-	uint8_t LeftScore, RightScore = 0;
+	uint8_t LeftScore = 0;
+	uint8_t RightScore = 0;
 
 	State= Start; // Initiate State to Start
 	NextState= Start;
@@ -122,7 +123,7 @@ void Pingpong(void)
 					{
 						NextState = MoveRight; // return ball
 						Led=2;
-						if (Speed >= 250000) Speed = Speed * 0.9;
+						if (Speed >= 150000) Speed = Speed * 0.9;
 					}
 					else
 					{
