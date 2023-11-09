@@ -301,3 +301,35 @@ java.util.concurrent.RejectedExecutionException: Task java.util.concurrent.Sched
 	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:659)
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:596)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1467)
+!SESSION 2023-11-09 10:55:35.313 -----------------------------------------------
+eclipse.buildId=Version 1.13.2
+java.version=17.0.6
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_SE
+Framework arguments:  -keyring /Users/thomas/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -keyring /Users/thomas/.eclipse_keyring
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2023-11-09 10:55:48.650
+!MESSAGE Log4j2 initialized with config file /Users/thomas/STM32CubeIDE/workspace_1.13.3/.metadata/.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2023-11-09 10:56:03.977
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.equinox.p2.metadata.repository 4 1000 2023-11-09 10:57:09.422
+!MESSAGE No repository found at https://github.com/STMicroelectronics/STM32CubeL4.
+!SESSION 2023-11-09 14:16:45.731 -----------------------------------------------
+eclipse.buildId=Version 1.13.2
+java.version=17.0.6
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_SE
+Framework arguments:  -keyring /Users/thomas/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -keyring /Users/thomas/.eclipse_keyring
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2023-11-09 14:17:00.757
+!MESSAGE Log4j2 initialized with config file /Users/thomas/STM32CubeIDE/workspace_1.13.3/.metadata/.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2023-11-09 14:17:15.038
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.equinox.p2.metadata.repository 4 1000 2023-11-09 14:18:32.254
+!MESSAGE No repository found at https://github.com/STMicroelectronics/STM32CubeL4.

@@ -84,7 +84,7 @@ void Pingpong(void)
 					{
 						NextState=MoveLeft; // return ball
 						Led=7;
-						if (Speed >= 250000) Speed = Speed * 0.9;
+						if (Speed >= 150000) Speed = Speed * 0.85;
 					}
 					else
 					{
@@ -123,7 +123,7 @@ void Pingpong(void)
 					{
 						NextState = MoveRight; // return ball
 						Led=2;
-						if (Speed >= 150000) Speed = Speed * 0.9;
+						if (Speed >= 150000) Speed = Speed * 0.85;
 					}
 					else
 					{
@@ -152,6 +152,8 @@ void Pingpong(void)
 				Show_gamepoints(LeftScore, RightScore);
 				LeftScore = 0;
 				RightScore = 0;
+				LeftServe = true;
+				RightServe = true;
 				NextState = Start;
 			}
 			default:
