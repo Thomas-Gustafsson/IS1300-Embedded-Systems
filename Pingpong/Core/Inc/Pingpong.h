@@ -2,7 +2,7 @@
  * Pingpong.h
  *
  *  Created on: Nov 2, 2023
- *      Author: thomas
+ *      Author: Thomas Gustafsson & Viktor Björkén
  */
 #include <stdint.h>
 #ifndef INC_PINGPONG_H_
