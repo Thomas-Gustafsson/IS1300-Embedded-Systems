@@ -65,22 +65,10 @@ void Error_Handler(void);
 #define USART_RX_GPIO_Port GPIOA
 #define LD2_Pin GPIO_PIN_5
 #define LD2_GPIO_Port GPIOA
-#define TL1_Car_Pin GPIO_PIN_4
-#define TL1_Car_GPIO_Port GPIOC
-#define Button3_C_Pin GPIO_PIN_5
-#define Button3_C_GPIO_Port GPIOC
 #define STCP_595_Pin GPIO_PIN_12
 #define STCP_595_GPIO_Port GPIOB
 #define TL2_Car_Pin GPIO_PIN_13
 #define TL2_Car_GPIO_Port GPIOB
-#define TL3_Car_Pin GPIO_PIN_14
-#define TL3_Car_GPIO_Port GPIOB
-#define Button3_B_Pin GPIO_PIN_6
-#define Button3_B_GPIO_Port GPIOC
-#define Butto3_A_Pin GPIO_PIN_8
-#define Butto3_A_GPIO_Port GPIOC
-#define Disp_DataInstr_Pin GPIO_PIN_9
-#define Disp_DataInstr_GPIO_Port GPIOC
 #define Reset_595_Pin GPIO_PIN_9
 #define Reset_595_GPIO_Port GPIOA
 #define TL4_Car_Pin GPIO_PIN_10
@@ -89,20 +77,12 @@ void Error_Handler(void);
 #define TMS_GPIO_Port GPIOA
 #define TCK_Pin GPIO_PIN_14
 #define TCK_GPIO_Port GPIOA
-#define PL1_Switch_Pin GPIO_PIN_15
-#define PL1_Switch_GPIO_Port GPIOA
 #define Disp_CS_Pin GPIO_PIN_11
 #define Disp_CS_GPIO_Port GPIOC
 #define SWO_Pin GPIO_PIN_3
 #define SWO_GPIO_Port GPIOB
-#define Disp_Reset_Pin GPIO_PIN_6
-#define Disp_Reset_GPIO_Port GPIOB
 #define PL2_Switch_Pin GPIO_PIN_7
 #define PL2_Switch_GPIO_Port GPIOB
-#define Button3_Center_Pin GPIO_PIN_8
-#define Button3_Center_GPIO_Port GPIOB
-#define Button3_D_Pin GPIO_PIN_9
-#define Button3_D_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 
