@@ -1,0 +1,10 @@
+15:14:11 **** Incremental Build of configuration Debug for project IS1300_TrafficCrossing ****
+make -j7 all 
+arm-none-eabi-size   IS1300_TrafficCrossing.elf 
+   text	   data	    bss	    dec	    hex	filename
+  76832	    324	  20988	  98144	  17f60	IS1300_TrafficCrossing.elf
+Finished building: default.size.stdout
+ 
+
+15:14:12 Build Finished. 0 errors, 0 warnings. (took 409ms)
+

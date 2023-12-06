@@ -1,0 +1,57 @@
+2023-11-27 15:05:41,986 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] StartTraceHandler.execute(), success : Collect=false
+2023-11-27 15:05:42,487 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] StartTraceHandler.execute(), success : Collect=true
+2023-11-27 15:06:06,086 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] StartTraceHandler.execute(), success : Collect=false
+2023-11-27 15:14:11,149 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] StartTraceHandler.execute(), success : Collect=true
+2023-11-27 15:14:32,067 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] StartTraceHandler.execute(), success : Collect=false
+2023-11-27 15:42:56,855 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] StartTraceHandler.execute(), success : Collect=true
+2023-11-27 15:43:21,515 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] StartTraceHandler.execute(), success : Collect=false
+2023-11-27 16:08:54,168 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] StartTraceHandler.execute(), success : Collect=true
+2023-11-27 16:09:18,341 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] StartTraceHandler.execute(), success : Collect=false
+2023-11-27 16:15:44,232 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] StartTraceHandler.execute(), success : Collect=true
+2023-11-27 16:16:06,911 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] StartTraceHandler.execute(), success : Collect=false
+2023-11-27 16:21:25,489 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] StartTraceHandler.execute(), success : Collect=true
+2023-11-27 16:21:45,923 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] StartTraceHandler.execute(), success : Collect=false
+2023-11-27 17:29:01,235 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] 
+2023-11-27 17:54:10,173 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] StartTraceHandler.execute(), success : Collect=true
+2023-11-27 18:01:59,553 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] StartTraceHandler.execute(), success : Collect=false
+2023-11-27 18:02:00,159 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] StartTraceHandler.execute(), success : Collect=true
+2023-11-27 18:32:34,595 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] org.eclipse.core.commands.NotEnabledException: Trying to execute the disabled command com.st.stm32cube.ide.mcu.debug.swv.core.start_trace
+2023-11-27 18:32:34,601 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at org.eclipse.core.commands.Command.executeWithChecks(Command.java:479)
+2023-11-27 18:32:34,602 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at org.eclipse.core.commands.ParameterizedCommand.executeWithChecks(ParameterizedCommand.java:485)
+2023-11-27 18:32:34,603 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at org.eclipse.e4.core.commands.internal.HandlerServiceImpl.executeHandler(HandlerServiceImpl.java:213)
+2023-11-27 18:32:34,603 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at org.eclipse.ui.internal.handlers.LegacyHandlerService.executeCommand(LegacyHandlerService.java:389)
+2023-11-27 18:32:34,603 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at org.eclipse.ui.internal.handlers.LegacyHandlerService.executeCommand(LegacyHandlerService.java:366)
+2023-11-27 18:32:34,603 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at com.st.stm32cube.ide.mcu.debug.swv.core.ui.SWVView$OpenConfigAction.run(SWVView.java:86)
+2023-11-27 18:32:34,603 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at org.eclipse.jface.action.Action.runWithEvent(Action.java:474)
+2023-11-27 18:32:34,603 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at org.eclipse.jface.action.ActionContributionItem.handleWidgetSelection(ActionContributionItem.java:580)
+2023-11-27 18:32:34,604 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at org.eclipse.jface.action.ActionContributionItem.lambda$5(ActionContributionItem.java:453)
+2023-11-27 18:32:34,604 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:89)
+2023-11-27 18:32:34,604 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4646)
+2023-11-27 18:32:34,604 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1524)
+2023-11-27 18:32:34,604 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1547)
+2023-11-27 18:32:34,604 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1532)
+2023-11-27 18:32:34,604 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at org.eclipse.swt.widgets.Widget.notifyListeners(Widget.java:1325)
+2023-11-27 18:32:34,604 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4413)
+2023-11-27 18:32:34,604 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3989)
+2023-11-27 18:32:34,604 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1155)
+2023-11-27 18:32:34,604 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+2023-11-27 18:32:34,604 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1046)
+2023-11-27 18:32:34,604 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:155)
+2023-11-27 18:32:34,605 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:643)
+2023-11-27 18:32:34,605 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+2023-11-27 18:32:34,605 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:550)
+2023-11-27 18:32:34,605 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:171)
+2023-11-27 18:32:34,605 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:152)
+2023-11-27 18:32:34,605 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:203)
+2023-11-27 18:32:34,605 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:136)
+2023-11-27 18:32:34,605 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+2023-11-27 18:32:34,606 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:402)
+2023-11-27 18:32:34,606 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
+2023-11-27 18:32:34,606 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+2023-11-27 18:32:34,606 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+2023-11-27 18:32:34,606 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+2023-11-27 18:32:34,606 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+2023-11-27 18:32:34,606 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:659)
+2023-11-27 18:32:34,606 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:596)
+2023-11-27 18:32:34,606 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at org.eclipse.equinox.launcher.Main.run(Main.java:1467)
+2023-11-27 19:04:38,469 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] StartTraceHandler.execute(), success : Collect=true
