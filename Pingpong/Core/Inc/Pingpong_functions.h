@@ -2,7 +2,7 @@
  * pingpong_functions.h
  *
  *  Created on: Nov 3, 2023
- *      Author: thomas
+ *      Author: Thomas Gustafsson & Viktor Björkén
  */
 #include "stdbool.h"
 #include <stdint.h>

@@ -2,7 +2,7 @@
  * clock.h
  *
  *  Created on: Nov 3, 2023
- *      Author: thomas
+ *      Author: Thomas Gustafsson & Viktor Björkén
  */
 #include <stdint.h>
 

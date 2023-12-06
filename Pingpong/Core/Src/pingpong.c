@@ -1,9 +1,9 @@
 /** ******************************************************************************
 @brief	Pingpong statemachine for Pingpong-program
 @file	pingpong.c
-@author Thomas Gustafsson
+@author Thomas Gustafsson & Viktor Björkén
 @version 1.0
-@date 3-November-2023
+@date 9-November-2023
 @brief Functions and structures for program Pingpong
 ****************************************************************************** */
 /* Includes ------------------------------------------------------------------*/
