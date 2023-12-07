@@ -5,4 +5,10 @@
  *      Author: Thomas
  */
 
+#include "traffic_inputs.h"
+#include <stdio.h>
+#include <string.h>
+
+extern ADC_HandleTypeDef hadc1;
+
 
