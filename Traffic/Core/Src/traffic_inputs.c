@@ -9,6 +9,6 @@
 #include <stdio.h>
 #include <string.h>
 
-extern ADC_HandleTypeDef hadc1;
+
 
 

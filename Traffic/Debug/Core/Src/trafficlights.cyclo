@@ -1,0 +1,7 @@
+../Core/Src/trafficlights.c:16:6:stageReg	1
+../Core/Src/trafficlights.c:23:6:latchReg	1
+../Core/Src/trafficlights.c:28:6:setReg	1
+../Core/Src/trafficlights.c:37:6:traffic_NS	5
+../Core/Src/trafficlights.c:63:6:pedestrian_N	3
+../Core/Src/trafficlights.c:81:6:pedestrian_W	3
+../Core/Src/trafficlights.c:99:6:pedestrianPending_N	2
