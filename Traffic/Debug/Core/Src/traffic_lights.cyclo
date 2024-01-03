@@ -1,0 +1,4 @@
+../Core/Src/traffic_lights.c:15:6:writeLED	1
+../Core/Src/traffic_lights.c:25:6:setTrafficLights	5
+../Core/Src/traffic_lights.c:45:6:setPedestrianLight	3
+../Core/Src/traffic_lights.c:58:6:toggleIndicatorLight	2

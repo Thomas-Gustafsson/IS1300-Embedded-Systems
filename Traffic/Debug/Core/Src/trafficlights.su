@@ -1,7 +1,0 @@
-../Core/Src/trafficlights.c:16:6:stageReg	8	static
-../Core/Src/trafficlights.c:23:6:latchReg	8	static
-../Core/Src/trafficlights.c:28:6:setReg	8	static
-../Core/Src/trafficlights.c:37:6:traffic_NS	16	static
-../Core/Src/trafficlights.c:63:6:pedestrian_N	16	static
-../Core/Src/trafficlights.c:81:6:pedestrian_W	16	static
-../Core/Src/trafficlights.c:99:6:pedestrianPending_N	8	static

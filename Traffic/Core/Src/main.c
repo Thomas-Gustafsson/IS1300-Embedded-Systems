@@ -99,8 +99,8 @@ int main(void)
   while (1)
   {
 	#ifdef RUN_TEST_PROGRAM
-	  trafficSwitch_Test();
-	  pedestrianSwitch_Test();
+	  testStageTrafficlight();
+	  // pedestrianSwitch_Test();
 	#else
 	#endif
     /* USER CODE END WHILE */

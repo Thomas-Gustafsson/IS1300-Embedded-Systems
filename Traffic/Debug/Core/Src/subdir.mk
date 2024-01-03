@@ -17,8 +17,8 @@ C_SRCS += \
 ../Core/Src/sysmem.c \
 ../Core/Src/system_stm32l4xx.c \
 ../Core/Src/test.c \
-../Core/Src/traffic_inputs.c \
-../Core/Src/trafficlights.c 
+../Core/Src/traffic_lights.c \
+../Core/Src/traffic_logic.c 
 
 OBJS += \
 ./Core/Src/adc.o \
@@ -33,8 +33,8 @@ OBJS += \
 ./Core/Src/sysmem.o \
 ./Core/Src/system_stm32l4xx.o \
 ./Core/Src/test.o \
-./Core/Src/traffic_inputs.o \
-./Core/Src/trafficlights.o 
+./Core/Src/traffic_lights.o \
+./Core/Src/traffic_logic.o 
 
 C_DEPS += \
 ./Core/Src/adc.d \
@@ -49,8 +49,8 @@ C_DEPS += \
 ./Core/Src/sysmem.d \
 ./Core/Src/system_stm32l4xx.d \
 ./Core/Src/test.d \
-./Core/Src/traffic_inputs.d \
-./Core/Src/trafficlights.d 
+./Core/Src/traffic_lights.d \
+./Core/Src/traffic_logic.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -60,7 +60,7 @@ Core/Src/%.o Core/Src/%.su Core/Src/%.cyclo: ../Core/Src/%.c Core/Src/subdir.mk
 clean: clean-Core-2f-Src
 
 clean-Core-2f-Src:
-	-$(RM) ./Core/Src/adc.cyclo ./Core/Src/adc.d ./Core/Src/adc.o ./Core/Src/adc.su ./Core/Src/gpio.cyclo ./Core/Src/gpio.d ./Core/Src/gpio.o ./Core/Src/gpio.su ./Core/Src/main.cyclo ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/main.su ./Core/Src/pedestrian_light.cyclo ./Core/Src/pedestrian_light.d ./Core/Src/pedestrian_light.o ./Core/Src/pedestrian_light.su ./Core/Src/spi.cyclo ./Core/Src/spi.d ./Core/Src/spi.o ./Core/Src/spi.su ./Core/Src/stm32l4xx_hal_msp.cyclo ./Core/Src/stm32l4xx_hal_msp.d ./Core/Src/stm32l4xx_hal_msp.o ./Core/Src/stm32l4xx_hal_msp.su ./Core/Src/stm32l4xx_hal_timebase_tim.cyclo ./Core/Src/stm32l4xx_hal_timebase_tim.d ./Core/Src/stm32l4xx_hal_timebase_tim.o ./Core/Src/stm32l4xx_hal_timebase_tim.su ./Core/Src/stm32l4xx_it.cyclo ./Core/Src/stm32l4xx_it.d ./Core/Src/stm32l4xx_it.o ./Core/Src/stm32l4xx_it.su ./Core/Src/syscalls.cyclo ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/syscalls.su ./Core/Src/sysmem.cyclo ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/sysmem.su ./Core/Src/system_stm32l4xx.cyclo ./Core/Src/system_stm32l4xx.d ./Core/Src/system_stm32l4xx.o ./Core/Src/system_stm32l4xx.su ./Core/Src/test.cyclo ./Core/Src/test.d ./Core/Src/test.o ./Core/Src/test.su ./Core/Src/traffic_inputs.cyclo ./Core/Src/traffic_inputs.d ./Core/Src/traffic_inputs.o ./Core/Src/traffic_inputs.su ./Core/Src/trafficlights.cyclo ./Core/Src/trafficlights.d ./Core/Src/trafficlights.o ./Core/Src/trafficlights.su
+	-$(RM) ./Core/Src/adc.cyclo ./Core/Src/adc.d ./Core/Src/adc.o ./Core/Src/adc.su ./Core/Src/gpio.cyclo ./Core/Src/gpio.d ./Core/Src/gpio.o ./Core/Src/gpio.su ./Core/Src/main.cyclo ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/main.su ./Core/Src/pedestrian_light.cyclo ./Core/Src/pedestrian_light.d ./Core/Src/pedestrian_light.o ./Core/Src/pedestrian_light.su ./Core/Src/spi.cyclo ./Core/Src/spi.d ./Core/Src/spi.o ./Core/Src/spi.su ./Core/Src/stm32l4xx_hal_msp.cyclo ./Core/Src/stm32l4xx_hal_msp.d ./Core/Src/stm32l4xx_hal_msp.o ./Core/Src/stm32l4xx_hal_msp.su ./Core/Src/stm32l4xx_hal_timebase_tim.cyclo ./Core/Src/stm32l4xx_hal_timebase_tim.d ./Core/Src/stm32l4xx_hal_timebase_tim.o ./Core/Src/stm32l4xx_hal_timebase_tim.su ./Core/Src/stm32l4xx_it.cyclo ./Core/Src/stm32l4xx_it.d ./Core/Src/stm32l4xx_it.o ./Core/Src/stm32l4xx_it.su ./Core/Src/syscalls.cyclo ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/syscalls.su ./Core/Src/sysmem.cyclo ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/sysmem.su ./Core/Src/system_stm32l4xx.cyclo ./Core/Src/system_stm32l4xx.d ./Core/Src/system_stm32l4xx.o ./Core/Src/system_stm32l4xx.su ./Core/Src/test.cyclo ./Core/Src/test.d ./Core/Src/test.o ./Core/Src/test.su ./Core/Src/traffic_lights.cyclo ./Core/Src/traffic_lights.d ./Core/Src/traffic_lights.o ./Core/Src/traffic_lights.su ./Core/Src/traffic_logic.cyclo ./Core/Src/traffic_logic.d ./Core/Src/traffic_logic.o ./Core/Src/traffic_logic.su
 
 .PHONY: clean-Core-2f-Src
 
