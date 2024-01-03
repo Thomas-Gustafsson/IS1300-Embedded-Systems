@@ -1,6 +1,6 @@
 Core/Src/traffic_logic.o: ../Core/Src/traffic_logic.c \
- ../Core/Inc/traffic.h ../Core/Inc/gpio.h ../Core/Inc/main.h \
- ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h \
+ ../Core/Inc/traffic.h ../Core/Src/traffic_lights.c ../Core/Inc/gpio.h \
+ ../Core/Inc/main.h ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h \
  ../Core/Inc/stm32l4xx_hal_conf.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_rcc.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_def.h \
@@ -33,6 +33,7 @@ Core/Src/traffic_logic.o: ../Core/Src/traffic_logic.c \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim_ex.h \
  ../Core/Inc/spi.h
 ../Core/Inc/traffic.h:
+../Core/Src/traffic_lights.c:
 ../Core/Inc/gpio.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:

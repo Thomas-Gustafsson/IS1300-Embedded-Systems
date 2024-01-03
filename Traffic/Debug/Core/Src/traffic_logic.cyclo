@@ -1,0 +1,5 @@
+../Core/Src/traffic_logic.c:37:6:shiftWriteLED	1
+../Core/Src/traffic_logic.c:44:10:stageTrafficlight	1
+../Core/Src/traffic_logic.c:51:10:stagePedestrianlight	1
+../Core/Src/traffic_logic.c:57:6:crosswalk	8
+../Core/Src/traffic_logic.c:84:6:trafficSwitch	15

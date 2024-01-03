@@ -25,6 +25,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "test.h"
+#include "traffic.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -34,7 +35,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define RUN_TEST_PROGRAM
+// #define RUN_TEST_PROGRAM
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -99,9 +100,10 @@ int main(void)
   while (1)
   {
 	#ifdef RUN_TEST_PROGRAM
-	  testStageTrafficlight();
+	  trafficSwitch_Test();
 	  // pedestrianSwitch_Test();
 	#else
+	  trafficSwitch();
 	#endif
     /* USER CODE END WHILE */
 

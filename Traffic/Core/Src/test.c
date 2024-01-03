@@ -11,7 +11,7 @@
 #include "test.h"
 #include "gpio.h"
 #include "spi.h"
-
+/*
 uint8_t waitIndicator;
 uint8_t fromActive;
 
@@ -31,14 +31,14 @@ typedef enum {
 
 static states state, nextState;
 
-uint32_t stageTrafficlight(uint8_t statebit) {
+uint32_t stageTrafficlight_Test(uint8_t statebit) {
     uint32_t shift = 0x000000;
     shift |= statebit << 8;
     shift |= statebit << 3;
     return shift;
 }
 
-uint32_t stagePedestrianlight(uint8_t statebit) {
+uint32_t stagePedestrianlight_Test(uint8_t statebit) {
     uint32_t shift = 0x000000;
     shift |= statebit << 11;
     return shift;
@@ -64,34 +64,34 @@ void crosswalkTest() {
     if((HAL_GetTick() - toggleTime) == toggle_TestFreq && nextState == TRANSITION)
     	{
     		//traffic lights green, pedestrian toggle off
-    		shift = stagePedestrianlight(1);
+    		shift = stagePedestrianlight_Test(1);
     		testBuffer[0] |= shift;
     		shiftWriteLED_Test(testBuffer);
     	}
     	else if((HAL_GetTick() - toggleTime) == toggle_TestFreq * 2  && nextState == TRANSITION)
     	{
     		// pedestrian toggle on
-    		shift = stagePedestrianlight(4|1);
+    		shift = stagePedestrianlight_Test(4|1);
     		toggleTime = HAL_GetTick();
     		testBuffer[0] |= shift;
     		shiftWriteLED_Test(testBuffer);
     	}
     	else if(nextState != TRANSITION)
-    		shift = stagePedestrianlight(1);
+    		shift = stagePedestrianlight_Test(1);
 }
 
-void testStageTrafficlight(void) {
+void trafficSwitch_Test(void) {
     state = ACTIVE;
     while (1) {
         switch (state) {
         case ACTIVE:
         	while(1) {
-        		testBuffer[0] = stageTrafficlight(4); // traffic light green
+        		testBuffer[0] = stageTrafficlight_Test(4); // traffic light green
         		testBuffer[0] &= ~shift;
         		crosswalkTest();
 
         		if ((HAL_GetTick() - time) <= orangeDelay) {
-        		   testBuffer[0] = stageTrafficlight(2);
+        		   testBuffer[0] = stageTrafficlight_Test(2);
         		}
 
         		testBuffer[0] |= shift;
@@ -108,12 +108,12 @@ void testStageTrafficlight(void) {
         case TRANSITION:
             time = HAL_GetTick();
             while ((HAL_GetTick() - time) <= orangeDelay) {
-            	// testBuffer[0] = stageTrafficlight(2) | stagePedestrianlight(1);
+            	// testBuffer[0] = stageTrafficlight_Test(2) | stagePedestrianlight_Test(1);
 
             	if ((HAL_GetTick() - toggleTime) == toggle_TestFreq || fromActive == 0) {
-                    testBuffer[0] = stageTrafficlight(2) | stagePedestrianlight(1); // traffic light yellow, pedestrian light red
+                    testBuffer[0] = stageTrafficlight_Test(2) | stagePedestrianlight_Test(1); // traffic light yellow, pedestrian light red
                 } else if(HAL_GetTick() - toggleTime == toggle_TestFreq * 2 || (HAL_GetTick() - toggleTime) > toggle_TestFreq * 2 ){
-                    testBuffer[0] = stageTrafficlight(2) | stagePedestrianlight(4|1); // traffic light yellow
+                    testBuffer[0] = stageTrafficlight_Test(2) | stagePedestrianlight_Test(4|1); // traffic light yellow
                     toggleTime = HAL_GetTick();
                 }
                 shiftWriteLED_Test(testBuffer);
@@ -130,7 +130,7 @@ void testStageTrafficlight(void) {
         	fromActive = 0;
             time = HAL_GetTick();
             while ((HAL_GetTick() - time) <= walkingDelay) {
-                testBuffer[0] = stageTrafficlight(1) | stagePedestrianlight(2); // traffic light red, pedestrian light green
+                testBuffer[0] = stageTrafficlight_Test(1) | stagePedestrianlight_Test(2); // traffic light red, pedestrian light green
                 shiftWriteLED_Test(testBuffer);
             }
             nextState = TRANSITION;
@@ -198,7 +198,7 @@ void crosswalk_Test() {
 }
 /* ------------------------------------------- */
 
-
+/*
 
 void traffic_Test() {
 	state = ACTIVE;
@@ -243,15 +243,10 @@ void traffic_Test() {
 
 /* ------------------------------------------- */
 
-// Function to test the traffic light switch
-void trafficSwitch_Test() {
-	testStageTrafficlight();
-	// Read the state of the switches
-	/*
-	if(	HAL_GPIO_ReadPin(TL4_Car_GPIO_Port, TL4_Car_Pin) == GPIO_PIN_SET
-			|| HAL_GPIO_ReadPin(TL2_Car_GPIO_Port, TL2_Car_Pin) == GPIO_PIN_SET )
+/* void trafficSwitch_Test() {
+
+	if(	HAL_GPIO_ReadPin(TL4_Car_GPIO_Port, TL4_Car_Pin) == GPIO_PIN_SET || HAL_GPIO_ReadPin(TL2_Car_GPIO_Port, TL2_Car_Pin) == GPIO_PIN_SET )
 	{
-		// If the switch state is high, activate lights by calling the relevant traffic LED function
 		trafficLED_Test(GREEN);
 		crosswalk_Test();
 		HAL_Delay(1000);
@@ -266,29 +261,20 @@ void trafficSwitch_Test() {
 		HAL_Delay(1000);
 		//LED_Test();
 	} else {
-		// Otherwise, turn off lights by setting them to low
 		HAL_GPIO_WritePin(Reset_595_GPIO_Port, Reset_595_Pin, GPIO_PIN_RESET);
-		HAL_GPIO_WritePin(STCP_595_GPIO_Port, STCP_595_Pin, GPIO_PIN_SET);
-		HAL_GPIO_WritePin(STCP_595_GPIO_Port, STCP_595_Pin, GPIO_PIN_RESET);
-		HAL_GPIO_WritePin(Reset_595_GPIO_Port, Reset_595_Pin, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(STCP_595_GPIO_Port, STCP_595_Pin, GPIO_PIN_SET);;
 	}
-	*/
-}
 
-// Function to test the pedestrian light switch
+} */
+
 void pedestrianSwitch_Test() {
-	// Read the state of the switches
 	if ( HAL_GPIO_ReadPin(PL2_Switch_GPIO_Port, PL2_Switch_Pin) == GPIO_PIN_SET )
 	{
 		crosswalk_Test();
-		// If the switch state is low, activate lights by calling the relevant pedestrian LED function
 		//pedestrianLED_Test();
 	} else {
-		// Otherwise, turn off lights by setting them to low
 		HAL_GPIO_WritePin(Reset_595_GPIO_Port, Reset_595_Pin, GPIO_PIN_RESET);
 		HAL_GPIO_WritePin(STCP_595_GPIO_Port, STCP_595_Pin, GPIO_PIN_SET);
-		HAL_GPIO_WritePin(STCP_595_GPIO_Port, STCP_595_Pin, GPIO_PIN_RESET);
-		HAL_GPIO_WritePin(Reset_595_GPIO_Port, Reset_595_Pin, GPIO_PIN_SET);
 	}
 }
 
@@ -296,48 +282,31 @@ void pedestrianSwitch_Test() {
 /* ----------------------------------------------------------------------------------------- */
 
 
-// Function to test the north and south traffic lights
 void LED_Test() {
-	// Set the bits corresponding to the LEDs that should illuminate
 	uint8_t trafficAddress = 0b010000;
-	// Transmit the address data to the first shift register using SPI
 	HAL_SPI_Transmit(&hspi3, &trafficAddress, 1, HAL_MAX_DELAY);
 
-	// Update the bits and transmit the data to the first shift register via SPI.
-	// This action pushes the previous transmission to the second shift register.
 	trafficAddress = 0b000010;
 	HAL_SPI_Transmit(&hspi3, &trafficAddress, 1, HAL_MAX_DELAY);
 
-	// Reset the address bits to low and transmit them as data to the first shift register via SPI.
-	// This pushes the initial address data to the third shift register,
-	// and the previous data to the second register.
 	trafficAddress = 0b000000;
 	HAL_SPI_Transmit(&hspi3, &trafficAddress, 1, HAL_MAX_DELAY);
 
-	// Update the latch of the shift register, transferring the shift register data to storage for output
 	HAL_GPIO_WritePin(STCP_595_GPIO_Port, STCP_595_Pin, GPIO_PIN_SET);
 	HAL_GPIO_WritePin(STCP_595_GPIO_Port, STCP_595_Pin, GPIO_PIN_RESET);
 }
 
-// Function to test pedestrian lights
 void pedestrianLED_Test() {
-	// Set the bits corresponding to the LEDs that should illuminate
 	uint8_t pedestrianAddress = 0x00;
-	// Transmit the address data to the first shift register using SPI
 	HAL_SPI_Transmit(&hspi3, &pedestrianAddress, 1, HAL_MAX_DELAY);
 
-	// Reset the address bits to low and transmit them as data to the first shift register via SPI.
-	// This action pushes the previous transmission to the second shift register.
 	pedestrianAddress = 0b100000;
 	HAL_SPI_Transmit(&hspi3, &pedestrianAddress, 1, HAL_MAX_DELAY);
 
-	// Update the bits and transmit the data to the first shift register via SPI.
-	// This pushes the initial address data to the third shift register,
-	// and the previous data to the second register.
 	pedestrianAddress = 0x00;
 	HAL_SPI_Transmit(&hspi3, &pedestrianAddress, 1, HAL_MAX_DELAY);
 
-	// Update the latch of the shift register, transferring the shift register data to storage for output
 	HAL_GPIO_WritePin(STCP_595_GPIO_Port, STCP_595_Pin, GPIO_PIN_SET);
 	HAL_GPIO_WritePin(STCP_595_GPIO_Port, STCP_595_Pin, GPIO_PIN_RESET);
 }
+

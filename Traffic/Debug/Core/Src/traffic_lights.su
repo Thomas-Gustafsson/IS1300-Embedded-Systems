@@ -1,4 +1,0 @@
-../Core/Src/traffic_lights.c:15:6:writeLED	8	static
-../Core/Src/traffic_lights.c:25:6:setTrafficLights	16	static
-../Core/Src/traffic_lights.c:45:6:setPedestrianLight	16	static
-../Core/Src/traffic_lights.c:58:6:toggleIndicatorLight	8	static

@@ -29,23 +29,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
  12 .comment      00000043  00000000  00000000  00020044  2**0
                   CONTENTS, READONLY
- 13 .debug_info   000121fa  00000000  00000000  00020087  2**0
+ 13 .debug_info   000120ae  00000000  00000000  00020087  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_abbrev 00002b43  00000000  00000000  00032281  2**0
+ 14 .debug_abbrev 00002ace  00000000  00000000  00032135  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_aranges 000012a0  00000000  00000000  00034dc8  2**3
+ 15 .debug_aranges 00001258  00000000  00000000  00034c08  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_rnglists 00000e5e  00000000  00000000  00036068  2**0
+ 16 .debug_rnglists 00000e26  00000000  00000000  00035e60  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_macro  000282df  00000000  00000000  00036ec6  2**0
+ 17 .debug_macro  000282bc  00000000  00000000  00036c86  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_line   00015921  00000000  00000000  0005f1a5  2**0
+ 18 .debug_line   0001576d  00000000  00000000  0005ef42  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_str    000ff0de  00000000  00000000  00074ac6  2**0
+ 19 .debug_str    000fef72  00000000  00000000  000746af  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .debug_frame  00004e00  00000000  00000000  00173ba4  2**2
+ 20 .debug_frame  00004cec  00000000  00000000  00173624  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 0000007b  00000000  00000000  001789a4  2**0
+ 21 .debug_line_str 0000007b  00000000  00000000  00178310  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -630,13 +630,13 @@ int main(void)
  8000510:	f44f 7100 	mov.w	r1, #512	; 0x200
  8000514:	f04f 4090 	mov.w	r0, #1207959552	; 0x48000000
  8000518:	f001 fee6 	bl	80022e8 <HAL_GPIO_WritePin>
-  /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
-  while (1)
   {
 	#ifdef RUN_TEST_PROGRAM
-	  testStageTrafficlight();
- 800051c:	f000 fb1c 	bl	8000b58 <testStageTrafficlight>
+	  trafficSwitch_Test();
+	  // pedestrianSwitch_Test();
+	#else
+	  trafficSwitch();
+ 800051c:	f000 fb3c 	bl	8000b98 <trafficSwitch>
  8000520:	e7fc      	b.n	800051c <main+0x34>
  8000522:	bf00      	nop
  8000524:	48000800 	.word	0x48000800
@@ -1615,528 +1615,512 @@ void SystemInit(void)
  8000a02:	bf00      	nop
  8000a04:	e000ed00 	.word	0xe000ed00
 
-08000a08 <stageTrafficlight>:
+08000a08 <shiftWriteLED>:
     CROSSING,
 } states;
 
 static states state, nextState;
 
-uint32_t stageTrafficlight(uint8_t statebit) {
- 8000a08:	b480      	push	{r7}
- 8000a0a:	b085      	sub	sp, #20
+void shiftWriteLED(uint32_t ledBuffer[]) {
+ 8000a08:	b580      	push	{r7, lr}
+ 8000a0a:	b082      	sub	sp, #8
  8000a0c:	af00      	add	r7, sp, #0
- 8000a0e:	4603      	mov	r3, r0
- 8000a10:	71fb      	strb	r3, [r7, #7]
-    uint32_t shift = 0x000000;
- 8000a12:	2300      	movs	r3, #0
- 8000a14:	60fb      	str	r3, [r7, #12]
-    shift |= statebit << 8;
- 8000a16:	79fb      	ldrb	r3, [r7, #7]
- 8000a18:	021b      	lsls	r3, r3, #8
- 8000a1a:	461a      	mov	r2, r3
- 8000a1c:	68fb      	ldr	r3, [r7, #12]
- 8000a1e:	4313      	orrs	r3, r2
- 8000a20:	60fb      	str	r3, [r7, #12]
-    shift |= statebit << 3;
- 8000a22:	79fb      	ldrb	r3, [r7, #7]
- 8000a24:	00db      	lsls	r3, r3, #3
- 8000a26:	461a      	mov	r2, r3
- 8000a28:	68fb      	ldr	r3, [r7, #12]
- 8000a2a:	4313      	orrs	r3, r2
- 8000a2c:	60fb      	str	r3, [r7, #12]
-    return shift;
- 8000a2e:	68fb      	ldr	r3, [r7, #12]
+ 8000a0e:	6078      	str	r0, [r7, #4]
+	HAL_SPI_Transmit(&hspi3, (uint8_t*)&ledBuffer[0], 3, HAL_MAX_DELAY);
+ 8000a10:	f04f 33ff 	mov.w	r3, #4294967295
+ 8000a14:	2203      	movs	r2, #3
+ 8000a16:	6879      	ldr	r1, [r7, #4]
+ 8000a18:	4809      	ldr	r0, [pc, #36]	; (8000a40 <shiftWriteLED+0x38>)
+ 8000a1a:	f003 f85c 	bl	8003ad6 <HAL_SPI_Transmit>
+
+	HAL_GPIO_WritePin(STCP_595_GPIO_Port, STCP_595_Pin, GPIO_PIN_SET);
+ 8000a1e:	2201      	movs	r2, #1
+ 8000a20:	f44f 5180 	mov.w	r1, #4096	; 0x1000
+ 8000a24:	4807      	ldr	r0, [pc, #28]	; (8000a44 <shiftWriteLED+0x3c>)
+ 8000a26:	f001 fc5f 	bl	80022e8 <HAL_GPIO_WritePin>
+	HAL_GPIO_WritePin(STCP_595_GPIO_Port, STCP_595_Pin, GPIO_PIN_RESET);
+ 8000a2a:	2200      	movs	r2, #0
+ 8000a2c:	f44f 5180 	mov.w	r1, #4096	; 0x1000
+ 8000a30:	4804      	ldr	r0, [pc, #16]	; (8000a44 <shiftWriteLED+0x3c>)
+ 8000a32:	f001 fc59 	bl	80022e8 <HAL_GPIO_WritePin>
 }
- 8000a30:	4618      	mov	r0, r3
- 8000a32:	3714      	adds	r7, #20
- 8000a34:	46bd      	mov	sp, r7
- 8000a36:	f85d 7b04 	ldr.w	r7, [sp], #4
- 8000a3a:	4770      	bx	lr
+ 8000a36:	bf00      	nop
+ 8000a38:	3708      	adds	r7, #8
+ 8000a3a:	46bd      	mov	sp, r7
+ 8000a3c:	bd80      	pop	{r7, pc}
+ 8000a3e:	bf00      	nop
+ 8000a40:	200000f8 	.word	0x200000f8
+ 8000a44:	48000400 	.word	0x48000400
 
-08000a3c <stagePedestrianlight>:
+08000a48 <stageTrafficlight>:
 
-uint32_t stagePedestrianlight(uint8_t statebit) {
- 8000a3c:	b480      	push	{r7}
- 8000a3e:	b085      	sub	sp, #20
- 8000a40:	af00      	add	r7, sp, #0
- 8000a42:	4603      	mov	r3, r0
- 8000a44:	71fb      	strb	r3, [r7, #7]
+uint32_t stageTrafficlight(uint8_t bits) {
+ 8000a48:	b480      	push	{r7}
+ 8000a4a:	b085      	sub	sp, #20
+ 8000a4c:	af00      	add	r7, sp, #0
+ 8000a4e:	4603      	mov	r3, r0
+ 8000a50:	71fb      	strb	r3, [r7, #7]
     uint32_t shift = 0x000000;
- 8000a46:	2300      	movs	r3, #0
- 8000a48:	60fb      	str	r3, [r7, #12]
-    shift |= statebit << 11;
- 8000a4a:	79fb      	ldrb	r3, [r7, #7]
- 8000a4c:	02db      	lsls	r3, r3, #11
- 8000a4e:	461a      	mov	r2, r3
- 8000a50:	68fb      	ldr	r3, [r7, #12]
- 8000a52:	4313      	orrs	r3, r2
+ 8000a52:	2300      	movs	r3, #0
  8000a54:	60fb      	str	r3, [r7, #12]
+    shift |= bits << 8;
+ 8000a56:	79fb      	ldrb	r3, [r7, #7]
+ 8000a58:	021b      	lsls	r3, r3, #8
+ 8000a5a:	461a      	mov	r2, r3
+ 8000a5c:	68fb      	ldr	r3, [r7, #12]
+ 8000a5e:	4313      	orrs	r3, r2
+ 8000a60:	60fb      	str	r3, [r7, #12]
+    shift |= bits << 3;
+ 8000a62:	79fb      	ldrb	r3, [r7, #7]
+ 8000a64:	00db      	lsls	r3, r3, #3
+ 8000a66:	461a      	mov	r2, r3
+ 8000a68:	68fb      	ldr	r3, [r7, #12]
+ 8000a6a:	4313      	orrs	r3, r2
+ 8000a6c:	60fb      	str	r3, [r7, #12]
     return shift;
- 8000a56:	68fb      	ldr	r3, [r7, #12]
+ 8000a6e:	68fb      	ldr	r3, [r7, #12]
 }
- 8000a58:	4618      	mov	r0, r3
- 8000a5a:	3714      	adds	r7, #20
- 8000a5c:	46bd      	mov	sp, r7
- 8000a5e:	f85d 7b04 	ldr.w	r7, [sp], #4
- 8000a62:	4770      	bx	lr
+ 8000a70:	4618      	mov	r0, r3
+ 8000a72:	3714      	adds	r7, #20
+ 8000a74:	46bd      	mov	sp, r7
+ 8000a76:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 8000a7a:	4770      	bx	lr
 
-08000a64 <crosswalkTest>:
-uint16_t pedestrianDelay = 6000;
-uint16_t walkingDelay = 8000;
-uint16_t toggle_TestFreq = 500;
+08000a7c <stagePedestrianlight>:
 
+uint32_t stagePedestrianlight(uint8_t bits) {
+ 8000a7c:	b480      	push	{r7}
+ 8000a7e:	b085      	sub	sp, #20
+ 8000a80:	af00      	add	r7, sp, #0
+ 8000a82:	4603      	mov	r3, r0
+ 8000a84:	71fb      	strb	r3, [r7, #7]
+    uint32_t shift = 0x000000;
+ 8000a86:	2300      	movs	r3, #0
+ 8000a88:	60fb      	str	r3, [r7, #12]
+    shift |= bits << 11;
+ 8000a8a:	79fb      	ldrb	r3, [r7, #7]
+ 8000a8c:	02db      	lsls	r3, r3, #11
+ 8000a8e:	461a      	mov	r2, r3
+ 8000a90:	68fb      	ldr	r3, [r7, #12]
+ 8000a92:	4313      	orrs	r3, r2
+ 8000a94:	60fb      	str	r3, [r7, #12]
+    return shift;
+ 8000a96:	68fb      	ldr	r3, [r7, #12]
+}
+ 8000a98:	4618      	mov	r0, r3
+ 8000a9a:	3714      	adds	r7, #20
+ 8000a9c:	46bd      	mov	sp, r7
+ 8000a9e:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 8000aa2:	4770      	bx	lr
 
-void crosswalkTest() {
- 8000a64:	b580      	push	{r7, lr}
- 8000a66:	af00      	add	r7, sp, #0
-	                } else if(HAL_GetTick() - toggleTime == toggle_TestFreq * 2 || (HAL_GetTick() - toggleTime) > toggle_TestFreq * 2 ){
-	                    testBuffer[0] = stageTrafficlight(2) | stagePedestrianlight(4|1); // traffic light yellow
-	                    toggleTime = HAL_GetTick();
-	                } */
+08000aa4 <crosswalk>:
+
+void crosswalk() {
+ 8000aa4:	b580      	push	{r7, lr}
+ 8000aa6:	af00      	add	r7, sp, #0
 
     if (HAL_GPIO_ReadPin(PL2_Switch_GPIO_Port, PL2_Switch_Pin) == GPIO_PIN_RESET && nextState != TRANSITION) {
- 8000a68:	2180      	movs	r1, #128	; 0x80
- 8000a6a:	4834      	ldr	r0, [pc, #208]	; (8000b3c <crosswalkTest+0xd8>)
- 8000a6c:	f001 fc24 	bl	80022b8 <HAL_GPIO_ReadPin>
- 8000a70:	4603      	mov	r3, r0
- 8000a72:	2b00      	cmp	r3, #0
- 8000a74:	d110      	bne.n	8000a98 <crosswalkTest+0x34>
- 8000a76:	4b32      	ldr	r3, [pc, #200]	; (8000b40 <crosswalkTest+0xdc>)
- 8000a78:	781b      	ldrb	r3, [r3, #0]
- 8000a7a:	2b01      	cmp	r3, #1
- 8000a7c:	d00c      	beq.n	8000a98 <crosswalkTest+0x34>
+ 8000aa8:	2180      	movs	r1, #128	; 0x80
+ 8000aaa:	4834      	ldr	r0, [pc, #208]	; (8000b7c <crosswalk+0xd8>)
+ 8000aac:	f001 fc04 	bl	80022b8 <HAL_GPIO_ReadPin>
+ 8000ab0:	4603      	mov	r3, r0
+ 8000ab2:	2b00      	cmp	r3, #0
+ 8000ab4:	d110      	bne.n	8000ad8 <crosswalk+0x34>
+ 8000ab6:	4b32      	ldr	r3, [pc, #200]	; (8000b80 <crosswalk+0xdc>)
+ 8000ab8:	781b      	ldrb	r3, [r3, #0]
+ 8000aba:	2b01      	cmp	r3, #1
+ 8000abc:	d00c      	beq.n	8000ad8 <crosswalk+0x34>
         toggleTime = HAL_GetTick();
- 8000a7e:	f000 f9df 	bl	8000e40 <HAL_GetTick>
- 8000a82:	4603      	mov	r3, r0
- 8000a84:	4a2f      	ldr	r2, [pc, #188]	; (8000b44 <crosswalkTest+0xe0>)
- 8000a86:	6013      	str	r3, [r2, #0]
+ 8000abe:	f000 f9bf 	bl	8000e40 <HAL_GetTick>
+ 8000ac2:	4603      	mov	r3, r0
+ 8000ac4:	4a2f      	ldr	r2, [pc, #188]	; (8000b84 <crosswalk+0xe0>)
+ 8000ac6:	6013      	str	r3, [r2, #0]
         pedestrianTime = HAL_GetTick();
- 8000a88:	f000 f9da 	bl	8000e40 <HAL_GetTick>
- 8000a8c:	4603      	mov	r3, r0
- 8000a8e:	4a2e      	ldr	r2, [pc, #184]	; (8000b48 <crosswalkTest+0xe4>)
- 8000a90:	6013      	str	r3, [r2, #0]
+ 8000ac8:	f000 f9ba 	bl	8000e40 <HAL_GetTick>
+ 8000acc:	4603      	mov	r3, r0
+ 8000ace:	4a2e      	ldr	r2, [pc, #184]	; (8000b88 <crosswalk+0xe4>)
+ 8000ad0:	6013      	str	r3, [r2, #0]
         nextState = TRANSITION;
- 8000a92:	4b2b      	ldr	r3, [pc, #172]	; (8000b40 <crosswalkTest+0xdc>)
- 8000a94:	2201      	movs	r2, #1
- 8000a96:	701a      	strb	r2, [r3, #0]
-        // continueToggle = 0;  // Stop toggle when transitioning to other states
-    } else if (nextState != TRANSITION) {
-    	shift = stagePedestrianlight(1);
-    }*/
+ 8000ad2:	4b2b      	ldr	r3, [pc, #172]	; (8000b80 <crosswalk+0xdc>)
+ 8000ad4:	2201      	movs	r2, #1
+ 8000ad6:	701a      	strb	r2, [r3, #0]
+    }
 
-    if((HAL_GetTick() - toggleTime) == toggle_TestFreq && nextState == TRANSITION)
- 8000a98:	f000 f9d2 	bl	8000e40 <HAL_GetTick>
- 8000a9c:	4602      	mov	r2, r0
- 8000a9e:	4b29      	ldr	r3, [pc, #164]	; (8000b44 <crosswalkTest+0xe0>)
- 8000aa0:	681b      	ldr	r3, [r3, #0]
- 8000aa2:	1ad3      	subs	r3, r2, r3
- 8000aa4:	4a29      	ldr	r2, [pc, #164]	; (8000b4c <crosswalkTest+0xe8>)
- 8000aa6:	8812      	ldrh	r2, [r2, #0]
- 8000aa8:	4293      	cmp	r3, r2
- 8000aaa:	d114      	bne.n	8000ad6 <crosswalkTest+0x72>
- 8000aac:	4b24      	ldr	r3, [pc, #144]	; (8000b40 <crosswalkTest+0xdc>)
- 8000aae:	781b      	ldrb	r3, [r3, #0]
- 8000ab0:	2b01      	cmp	r3, #1
- 8000ab2:	d110      	bne.n	8000ad6 <crosswalkTest+0x72>
+    if((HAL_GetTick() - toggleTime) == toggleFreq && nextState == TRANSITION)
+ 8000ad8:	f000 f9b2 	bl	8000e40 <HAL_GetTick>
+ 8000adc:	4602      	mov	r2, r0
+ 8000ade:	4b29      	ldr	r3, [pc, #164]	; (8000b84 <crosswalk+0xe0>)
+ 8000ae0:	681b      	ldr	r3, [r3, #0]
+ 8000ae2:	1ad3      	subs	r3, r2, r3
+ 8000ae4:	4a29      	ldr	r2, [pc, #164]	; (8000b8c <crosswalk+0xe8>)
+ 8000ae6:	8812      	ldrh	r2, [r2, #0]
+ 8000ae8:	4293      	cmp	r3, r2
+ 8000aea:	d114      	bne.n	8000b16 <crosswalk+0x72>
+ 8000aec:	4b24      	ldr	r3, [pc, #144]	; (8000b80 <crosswalk+0xdc>)
+ 8000aee:	781b      	ldrb	r3, [r3, #0]
+ 8000af0:	2b01      	cmp	r3, #1
+ 8000af2:	d110      	bne.n	8000b16 <crosswalk+0x72>
     	{
     		//traffic lights green, pedestrian toggle off
     		shift = stagePedestrianlight(1);
- 8000ab4:	2001      	movs	r0, #1
- 8000ab6:	f7ff ffc1 	bl	8000a3c <stagePedestrianlight>
- 8000aba:	4603      	mov	r3, r0
- 8000abc:	4a24      	ldr	r2, [pc, #144]	; (8000b50 <crosswalkTest+0xec>)
- 8000abe:	6013      	str	r3, [r2, #0]
-    		testBuffer[0] |= shift;
- 8000ac0:	4b24      	ldr	r3, [pc, #144]	; (8000b54 <crosswalkTest+0xf0>)
- 8000ac2:	681a      	ldr	r2, [r3, #0]
- 8000ac4:	4b22      	ldr	r3, [pc, #136]	; (8000b50 <crosswalkTest+0xec>)
- 8000ac6:	681b      	ldr	r3, [r3, #0]
- 8000ac8:	4313      	orrs	r3, r2
- 8000aca:	4a22      	ldr	r2, [pc, #136]	; (8000b54 <crosswalkTest+0xf0>)
- 8000acc:	6013      	str	r3, [r2, #0]
-    		shiftWriteLED_Test(testBuffer);
- 8000ace:	4821      	ldr	r0, [pc, #132]	; (8000b54 <crosswalkTest+0xf0>)
- 8000ad0:	f000 f938 	bl	8000d44 <shiftWriteLED_Test>
- 8000ad4:	e02f      	b.n	8000b36 <crosswalkTest+0xd2>
+ 8000af4:	2001      	movs	r0, #1
+ 8000af6:	f7ff ffc1 	bl	8000a7c <stagePedestrianlight>
+ 8000afa:	4603      	mov	r3, r0
+ 8000afc:	4a24      	ldr	r2, [pc, #144]	; (8000b90 <crosswalk+0xec>)
+ 8000afe:	6013      	str	r3, [r2, #0]
+    		ledBuffer[0] |= shift;
+ 8000b00:	4b24      	ldr	r3, [pc, #144]	; (8000b94 <crosswalk+0xf0>)
+ 8000b02:	681a      	ldr	r2, [r3, #0]
+ 8000b04:	4b22      	ldr	r3, [pc, #136]	; (8000b90 <crosswalk+0xec>)
+ 8000b06:	681b      	ldr	r3, [r3, #0]
+ 8000b08:	4313      	orrs	r3, r2
+ 8000b0a:	4a22      	ldr	r2, [pc, #136]	; (8000b94 <crosswalk+0xf0>)
+ 8000b0c:	6013      	str	r3, [r2, #0]
+    		shiftWriteLED(ledBuffer);
+ 8000b0e:	4821      	ldr	r0, [pc, #132]	; (8000b94 <crosswalk+0xf0>)
+ 8000b10:	f7ff ff7a 	bl	8000a08 <shiftWriteLED>
+ 8000b14:	e02f      	b.n	8000b76 <crosswalk+0xd2>
     	}
-    	else if((HAL_GetTick() - toggleTime) == toggle_TestFreq * 2  && nextState == TRANSITION)
- 8000ad6:	f000 f9b3 	bl	8000e40 <HAL_GetTick>
- 8000ada:	4602      	mov	r2, r0
- 8000adc:	4b19      	ldr	r3, [pc, #100]	; (8000b44 <crosswalkTest+0xe0>)
- 8000ade:	681b      	ldr	r3, [r3, #0]
- 8000ae0:	1ad3      	subs	r3, r2, r3
- 8000ae2:	4a1a      	ldr	r2, [pc, #104]	; (8000b4c <crosswalkTest+0xe8>)
- 8000ae4:	8812      	ldrh	r2, [r2, #0]
- 8000ae6:	0052      	lsls	r2, r2, #1
- 8000ae8:	4293      	cmp	r3, r2
- 8000aea:	d119      	bne.n	8000b20 <crosswalkTest+0xbc>
- 8000aec:	4b14      	ldr	r3, [pc, #80]	; (8000b40 <crosswalkTest+0xdc>)
- 8000aee:	781b      	ldrb	r3, [r3, #0]
- 8000af0:	2b01      	cmp	r3, #1
- 8000af2:	d115      	bne.n	8000b20 <crosswalkTest+0xbc>
+    	else if((HAL_GetTick() - toggleTime) == toggleFreq * 2  && nextState == TRANSITION)
+ 8000b16:	f000 f993 	bl	8000e40 <HAL_GetTick>
+ 8000b1a:	4602      	mov	r2, r0
+ 8000b1c:	4b19      	ldr	r3, [pc, #100]	; (8000b84 <crosswalk+0xe0>)
+ 8000b1e:	681b      	ldr	r3, [r3, #0]
+ 8000b20:	1ad3      	subs	r3, r2, r3
+ 8000b22:	4a1a      	ldr	r2, [pc, #104]	; (8000b8c <crosswalk+0xe8>)
+ 8000b24:	8812      	ldrh	r2, [r2, #0]
+ 8000b26:	0052      	lsls	r2, r2, #1
+ 8000b28:	4293      	cmp	r3, r2
+ 8000b2a:	d119      	bne.n	8000b60 <crosswalk+0xbc>
+ 8000b2c:	4b14      	ldr	r3, [pc, #80]	; (8000b80 <crosswalk+0xdc>)
+ 8000b2e:	781b      	ldrb	r3, [r3, #0]
+ 8000b30:	2b01      	cmp	r3, #1
+ 8000b32:	d115      	bne.n	8000b60 <crosswalk+0xbc>
     	{
     		// pedestrian toggle on
     		shift = stagePedestrianlight(4|1);
- 8000af4:	2005      	movs	r0, #5
- 8000af6:	f7ff ffa1 	bl	8000a3c <stagePedestrianlight>
- 8000afa:	4603      	mov	r3, r0
- 8000afc:	4a14      	ldr	r2, [pc, #80]	; (8000b50 <crosswalkTest+0xec>)
- 8000afe:	6013      	str	r3, [r2, #0]
+ 8000b34:	2005      	movs	r0, #5
+ 8000b36:	f7ff ffa1 	bl	8000a7c <stagePedestrianlight>
+ 8000b3a:	4603      	mov	r3, r0
+ 8000b3c:	4a14      	ldr	r2, [pc, #80]	; (8000b90 <crosswalk+0xec>)
+ 8000b3e:	6013      	str	r3, [r2, #0]
     		toggleTime = HAL_GetTick();
- 8000b00:	f000 f99e 	bl	8000e40 <HAL_GetTick>
- 8000b04:	4603      	mov	r3, r0
- 8000b06:	4a0f      	ldr	r2, [pc, #60]	; (8000b44 <crosswalkTest+0xe0>)
- 8000b08:	6013      	str	r3, [r2, #0]
-    		testBuffer[0] |= shift;
- 8000b0a:	4b12      	ldr	r3, [pc, #72]	; (8000b54 <crosswalkTest+0xf0>)
- 8000b0c:	681a      	ldr	r2, [r3, #0]
- 8000b0e:	4b10      	ldr	r3, [pc, #64]	; (8000b50 <crosswalkTest+0xec>)
- 8000b10:	681b      	ldr	r3, [r3, #0]
- 8000b12:	4313      	orrs	r3, r2
- 8000b14:	4a0f      	ldr	r2, [pc, #60]	; (8000b54 <crosswalkTest+0xf0>)
- 8000b16:	6013      	str	r3, [r2, #0]
-    		shiftWriteLED_Test(testBuffer);
- 8000b18:	480e      	ldr	r0, [pc, #56]	; (8000b54 <crosswalkTest+0xf0>)
- 8000b1a:	f000 f913 	bl	8000d44 <shiftWriteLED_Test>
- 8000b1e:	e00a      	b.n	8000b36 <crosswalkTest+0xd2>
+ 8000b40:	f000 f97e 	bl	8000e40 <HAL_GetTick>
+ 8000b44:	4603      	mov	r3, r0
+ 8000b46:	4a0f      	ldr	r2, [pc, #60]	; (8000b84 <crosswalk+0xe0>)
+ 8000b48:	6013      	str	r3, [r2, #0]
+    		ledBuffer[0] |= shift;
+ 8000b4a:	4b12      	ldr	r3, [pc, #72]	; (8000b94 <crosswalk+0xf0>)
+ 8000b4c:	681a      	ldr	r2, [r3, #0]
+ 8000b4e:	4b10      	ldr	r3, [pc, #64]	; (8000b90 <crosswalk+0xec>)
+ 8000b50:	681b      	ldr	r3, [r3, #0]
+ 8000b52:	4313      	orrs	r3, r2
+ 8000b54:	4a0f      	ldr	r2, [pc, #60]	; (8000b94 <crosswalk+0xf0>)
+ 8000b56:	6013      	str	r3, [r2, #0]
+    		shiftWriteLED(ledBuffer);
+ 8000b58:	480e      	ldr	r0, [pc, #56]	; (8000b94 <crosswalk+0xf0>)
+ 8000b5a:	f7ff ff55 	bl	8000a08 <shiftWriteLED>
+ 8000b5e:	e00a      	b.n	8000b76 <crosswalk+0xd2>
     	}
     	else if(nextState != TRANSITION)
- 8000b20:	4b07      	ldr	r3, [pc, #28]	; (8000b40 <crosswalkTest+0xdc>)
- 8000b22:	781b      	ldrb	r3, [r3, #0]
- 8000b24:	2b01      	cmp	r3, #1
- 8000b26:	d006      	beq.n	8000b36 <crosswalkTest+0xd2>
+ 8000b60:	4b07      	ldr	r3, [pc, #28]	; (8000b80 <crosswalk+0xdc>)
+ 8000b62:	781b      	ldrb	r3, [r3, #0]
+ 8000b64:	2b01      	cmp	r3, #1
+ 8000b66:	d006      	beq.n	8000b76 <crosswalk+0xd2>
     		shift = stagePedestrianlight(1);
- 8000b28:	2001      	movs	r0, #1
- 8000b2a:	f7ff ff87 	bl	8000a3c <stagePedestrianlight>
- 8000b2e:	4603      	mov	r3, r0
- 8000b30:	4a07      	ldr	r2, [pc, #28]	; (8000b50 <crosswalkTest+0xec>)
- 8000b32:	6013      	str	r3, [r2, #0]
+ 8000b68:	2001      	movs	r0, #1
+ 8000b6a:	f7ff ff87 	bl	8000a7c <stagePedestrianlight>
+ 8000b6e:	4603      	mov	r3, r0
+ 8000b70:	4a07      	ldr	r2, [pc, #28]	; (8000b90 <crosswalk+0xec>)
+ 8000b72:	6013      	str	r3, [r2, #0]
 }
- 8000b34:	e7ff      	b.n	8000b36 <crosswalkTest+0xd2>
- 8000b36:	bf00      	nop
- 8000b38:	bd80      	pop	{r7, pc}
- 8000b3a:	bf00      	nop
- 8000b3c:	48000400 	.word	0x48000400
- 8000b40:	200001b5 	.word	0x200001b5
- 8000b44:	200001bc 	.word	0x200001bc
- 8000b48:	200001c0 	.word	0x200001c0
- 8000b4c:	2000000a 	.word	0x2000000a
- 8000b50:	200001b0 	.word	0x200001b0
- 8000b54:	200001ac 	.word	0x200001ac
+ 8000b74:	e7ff      	b.n	8000b76 <crosswalk+0xd2>
+ 8000b76:	bf00      	nop
+ 8000b78:	bd80      	pop	{r7, pc}
+ 8000b7a:	bf00      	nop
+ 8000b7c:	48000400 	.word	0x48000400
+ 8000b80:	200001c1 	.word	0x200001c1
+ 8000b84:	200001b8 	.word	0x200001b8
+ 8000b88:	200001bc 	.word	0x200001bc
+ 8000b8c:	20000004 	.word	0x20000004
+ 8000b90:	200001b0 	.word	0x200001b0
+ 8000b94:	200001ac 	.word	0x200001ac
 
-08000b58 <testStageTrafficlight>:
+08000b98 <trafficSwitch>:
 
-void testStageTrafficlight(void) {
- 8000b58:	b598      	push	{r3, r4, r7, lr}
- 8000b5a:	af00      	add	r7, sp, #0
+void trafficSwitch(void) {
+ 8000b98:	b598      	push	{r3, r4, r7, lr}
+ 8000b9a:	af00      	add	r7, sp, #0
     state = ACTIVE;
- 8000b5c:	4b6d      	ldr	r3, [pc, #436]	; (8000d14 <testStageTrafficlight+0x1bc>)
- 8000b5e:	2200      	movs	r2, #0
- 8000b60:	701a      	strb	r2, [r3, #0]
+ 8000b9c:	4b6d      	ldr	r3, [pc, #436]	; (8000d54 <trafficSwitch+0x1bc>)
+ 8000b9e:	2200      	movs	r2, #0
+ 8000ba0:	701a      	strb	r2, [r3, #0]
     while (1) {
         switch (state) {
- 8000b62:	4b6c      	ldr	r3, [pc, #432]	; (8000d14 <testStageTrafficlight+0x1bc>)
- 8000b64:	781b      	ldrb	r3, [r3, #0]
- 8000b66:	2b02      	cmp	r3, #2
- 8000b68:	f000 80a9 	beq.w	8000cbe <testStageTrafficlight+0x166>
- 8000b6c:	2b02      	cmp	r3, #2
- 8000b6e:	f300 80cb 	bgt.w	8000d08 <testStageTrafficlight+0x1b0>
- 8000b72:	2b00      	cmp	r3, #0
- 8000b74:	d002      	beq.n	8000b7c <testStageTrafficlight+0x24>
- 8000b76:	2b01      	cmp	r3, #1
- 8000b78:	d042      	beq.n	8000c00 <testStageTrafficlight+0xa8>
- 8000b7a:	e0c5      	b.n	8000d08 <testStageTrafficlight+0x1b0>
+ 8000ba2:	4b6c      	ldr	r3, [pc, #432]	; (8000d54 <trafficSwitch+0x1bc>)
+ 8000ba4:	781b      	ldrb	r3, [r3, #0]
+ 8000ba6:	2b02      	cmp	r3, #2
+ 8000ba8:	f000 80a9 	beq.w	8000cfe <trafficSwitch+0x166>
+ 8000bac:	2b02      	cmp	r3, #2
+ 8000bae:	f300 80cb 	bgt.w	8000d48 <trafficSwitch+0x1b0>
+ 8000bb2:	2b00      	cmp	r3, #0
+ 8000bb4:	d002      	beq.n	8000bbc <trafficSwitch+0x24>
+ 8000bb6:	2b01      	cmp	r3, #1
+ 8000bb8:	d042      	beq.n	8000c40 <trafficSwitch+0xa8>
+ 8000bba:	e0c5      	b.n	8000d48 <trafficSwitch+0x1b0>
         case ACTIVE:
         	while(1) {
-        		testBuffer[0] = stageTrafficlight(4); // traffic light green
- 8000b7c:	2004      	movs	r0, #4
- 8000b7e:	f7ff ff43 	bl	8000a08 <stageTrafficlight>
- 8000b82:	4603      	mov	r3, r0
- 8000b84:	4a64      	ldr	r2, [pc, #400]	; (8000d18 <testStageTrafficlight+0x1c0>)
- 8000b86:	6013      	str	r3, [r2, #0]
-        		testBuffer[0] &= ~shift;
- 8000b88:	4b63      	ldr	r3, [pc, #396]	; (8000d18 <testStageTrafficlight+0x1c0>)
- 8000b8a:	681a      	ldr	r2, [r3, #0]
- 8000b8c:	4b63      	ldr	r3, [pc, #396]	; (8000d1c <testStageTrafficlight+0x1c4>)
- 8000b8e:	681b      	ldr	r3, [r3, #0]
- 8000b90:	43db      	mvns	r3, r3
- 8000b92:	4013      	ands	r3, r2
- 8000b94:	4a60      	ldr	r2, [pc, #384]	; (8000d18 <testStageTrafficlight+0x1c0>)
- 8000b96:	6013      	str	r3, [r2, #0]
-        		crosswalkTest();
- 8000b98:	f7ff ff64 	bl	8000a64 <crosswalkTest>
+        		ledBuffer[0] = stageTrafficlight(4); // traffic light green
+ 8000bbc:	2004      	movs	r0, #4
+ 8000bbe:	f7ff ff43 	bl	8000a48 <stageTrafficlight>
+ 8000bc2:	4603      	mov	r3, r0
+ 8000bc4:	4a64      	ldr	r2, [pc, #400]	; (8000d58 <trafficSwitch+0x1c0>)
+ 8000bc6:	6013      	str	r3, [r2, #0]
+        		ledBuffer[0] &= ~shift;
+ 8000bc8:	4b63      	ldr	r3, [pc, #396]	; (8000d58 <trafficSwitch+0x1c0>)
+ 8000bca:	681a      	ldr	r2, [r3, #0]
+ 8000bcc:	4b63      	ldr	r3, [pc, #396]	; (8000d5c <trafficSwitch+0x1c4>)
+ 8000bce:	681b      	ldr	r3, [r3, #0]
+ 8000bd0:	43db      	mvns	r3, r3
+ 8000bd2:	4013      	ands	r3, r2
+ 8000bd4:	4a60      	ldr	r2, [pc, #384]	; (8000d58 <trafficSwitch+0x1c0>)
+ 8000bd6:	6013      	str	r3, [r2, #0]
+        		crosswalk();
+ 8000bd8:	f7ff ff64 	bl	8000aa4 <crosswalk>
 
         		if ((HAL_GetTick() - time) <= orangeDelay) {
- 8000b9c:	f000 f950 	bl	8000e40 <HAL_GetTick>
- 8000ba0:	4602      	mov	r2, r0
- 8000ba2:	4b5f      	ldr	r3, [pc, #380]	; (8000d20 <testStageTrafficlight+0x1c8>)
- 8000ba4:	681b      	ldr	r3, [r3, #0]
- 8000ba6:	1ad3      	subs	r3, r2, r3
- 8000ba8:	4a5e      	ldr	r2, [pc, #376]	; (8000d24 <testStageTrafficlight+0x1cc>)
- 8000baa:	8812      	ldrh	r2, [r2, #0]
- 8000bac:	4293      	cmp	r3, r2
- 8000bae:	d805      	bhi.n	8000bbc <testStageTrafficlight+0x64>
-        		   testBuffer[0] = stageTrafficlight(2);
- 8000bb0:	2002      	movs	r0, #2
- 8000bb2:	f7ff ff29 	bl	8000a08 <stageTrafficlight>
- 8000bb6:	4603      	mov	r3, r0
- 8000bb8:	4a57      	ldr	r2, [pc, #348]	; (8000d18 <testStageTrafficlight+0x1c0>)
- 8000bba:	6013      	str	r3, [r2, #0]
+ 8000bdc:	f000 f930 	bl	8000e40 <HAL_GetTick>
+ 8000be0:	4602      	mov	r2, r0
+ 8000be2:	4b5f      	ldr	r3, [pc, #380]	; (8000d60 <trafficSwitch+0x1c8>)
+ 8000be4:	681b      	ldr	r3, [r3, #0]
+ 8000be6:	1ad3      	subs	r3, r2, r3
+ 8000be8:	4a5e      	ldr	r2, [pc, #376]	; (8000d64 <trafficSwitch+0x1cc>)
+ 8000bea:	8812      	ldrh	r2, [r2, #0]
+ 8000bec:	4293      	cmp	r3, r2
+ 8000bee:	d805      	bhi.n	8000bfc <trafficSwitch+0x64>
+        		   ledBuffer[0] = stageTrafficlight(2);
+ 8000bf0:	2002      	movs	r0, #2
+ 8000bf2:	f7ff ff29 	bl	8000a48 <stageTrafficlight>
+ 8000bf6:	4603      	mov	r3, r0
+ 8000bf8:	4a57      	ldr	r2, [pc, #348]	; (8000d58 <trafficSwitch+0x1c0>)
+ 8000bfa:	6013      	str	r3, [r2, #0]
         		}
 
-        		testBuffer[0] |= shift;
- 8000bbc:	4b56      	ldr	r3, [pc, #344]	; (8000d18 <testStageTrafficlight+0x1c0>)
- 8000bbe:	681a      	ldr	r2, [r3, #0]
- 8000bc0:	4b56      	ldr	r3, [pc, #344]	; (8000d1c <testStageTrafficlight+0x1c4>)
- 8000bc2:	681b      	ldr	r3, [r3, #0]
- 8000bc4:	4313      	orrs	r3, r2
- 8000bc6:	4a54      	ldr	r2, [pc, #336]	; (8000d18 <testStageTrafficlight+0x1c0>)
- 8000bc8:	6013      	str	r3, [r2, #0]
-        		shiftWriteLED_Test(testBuffer);
- 8000bca:	4853      	ldr	r0, [pc, #332]	; (8000d18 <testStageTrafficlight+0x1c0>)
- 8000bcc:	f000 f8ba 	bl	8000d44 <shiftWriteLED_Test>
+        		ledBuffer[0] |= shift;
+ 8000bfc:	4b56      	ldr	r3, [pc, #344]	; (8000d58 <trafficSwitch+0x1c0>)
+ 8000bfe:	681a      	ldr	r2, [r3, #0]
+ 8000c00:	4b56      	ldr	r3, [pc, #344]	; (8000d5c <trafficSwitch+0x1c4>)
+ 8000c02:	681b      	ldr	r3, [r3, #0]
+ 8000c04:	4313      	orrs	r3, r2
+ 8000c06:	4a54      	ldr	r2, [pc, #336]	; (8000d58 <trafficSwitch+0x1c0>)
+ 8000c08:	6013      	str	r3, [r2, #0]
+        		shiftWriteLED(ledBuffer);
+ 8000c0a:	4853      	ldr	r0, [pc, #332]	; (8000d58 <trafficSwitch+0x1c0>)
+ 8000c0c:	f7ff fefc 	bl	8000a08 <shiftWriteLED>
 
         		if ((HAL_GetTick() - pedestrianTime) == (pedestrianDelay - orangeDelay) && nextState == TRANSITION) {
- 8000bd0:	f000 f936 	bl	8000e40 <HAL_GetTick>
- 8000bd4:	4602      	mov	r2, r0
- 8000bd6:	4b54      	ldr	r3, [pc, #336]	; (8000d28 <testStageTrafficlight+0x1d0>)
- 8000bd8:	681b      	ldr	r3, [r3, #0]
- 8000bda:	1ad3      	subs	r3, r2, r3
- 8000bdc:	4a53      	ldr	r2, [pc, #332]	; (8000d2c <testStageTrafficlight+0x1d4>)
- 8000bde:	8812      	ldrh	r2, [r2, #0]
- 8000be0:	4611      	mov	r1, r2
- 8000be2:	4a50      	ldr	r2, [pc, #320]	; (8000d24 <testStageTrafficlight+0x1cc>)
- 8000be4:	8812      	ldrh	r2, [r2, #0]
- 8000be6:	1a8a      	subs	r2, r1, r2
- 8000be8:	4293      	cmp	r3, r2
- 8000bea:	d1c7      	bne.n	8000b7c <testStageTrafficlight+0x24>
- 8000bec:	4b50      	ldr	r3, [pc, #320]	; (8000d30 <testStageTrafficlight+0x1d8>)
- 8000bee:	781b      	ldrb	r3, [r3, #0]
- 8000bf0:	2b01      	cmp	r3, #1
- 8000bf2:	d000      	beq.n	8000bf6 <testStageTrafficlight+0x9e>
-        		testBuffer[0] = stageTrafficlight(4); // traffic light green
- 8000bf4:	e7c2      	b.n	8000b7c <testStageTrafficlight+0x24>
+ 8000c10:	f000 f916 	bl	8000e40 <HAL_GetTick>
+ 8000c14:	4602      	mov	r2, r0
+ 8000c16:	4b54      	ldr	r3, [pc, #336]	; (8000d68 <trafficSwitch+0x1d0>)
+ 8000c18:	681b      	ldr	r3, [r3, #0]
+ 8000c1a:	1ad3      	subs	r3, r2, r3
+ 8000c1c:	4a53      	ldr	r2, [pc, #332]	; (8000d6c <trafficSwitch+0x1d4>)
+ 8000c1e:	8812      	ldrh	r2, [r2, #0]
+ 8000c20:	4611      	mov	r1, r2
+ 8000c22:	4a50      	ldr	r2, [pc, #320]	; (8000d64 <trafficSwitch+0x1cc>)
+ 8000c24:	8812      	ldrh	r2, [r2, #0]
+ 8000c26:	1a8a      	subs	r2, r1, r2
+ 8000c28:	4293      	cmp	r3, r2
+ 8000c2a:	d1c7      	bne.n	8000bbc <trafficSwitch+0x24>
+ 8000c2c:	4b50      	ldr	r3, [pc, #320]	; (8000d70 <trafficSwitch+0x1d8>)
+ 8000c2e:	781b      	ldrb	r3, [r3, #0]
+ 8000c30:	2b01      	cmp	r3, #1
+ 8000c32:	d000      	beq.n	8000c36 <trafficSwitch+0x9e>
+        		ledBuffer[0] = stageTrafficlight(4); // traffic light green
+ 8000c34:	e7c2      	b.n	8000bbc <trafficSwitch+0x24>
         		    break;
- 8000bf6:	bf00      	nop
+ 8000c36:	bf00      	nop
         		}
-
         	}
 
             fromActive = 1;
- 8000bf8:	4b4e      	ldr	r3, [pc, #312]	; (8000d34 <testStageTrafficlight+0x1dc>)
- 8000bfa:	2201      	movs	r2, #1
- 8000bfc:	701a      	strb	r2, [r3, #0]
+ 8000c38:	4b4e      	ldr	r3, [pc, #312]	; (8000d74 <trafficSwitch+0x1dc>)
+ 8000c3a:	2201      	movs	r2, #1
+ 8000c3c:	701a      	strb	r2, [r3, #0]
             break;
- 8000bfe:	e083      	b.n	8000d08 <testStageTrafficlight+0x1b0>
+ 8000c3e:	e083      	b.n	8000d48 <trafficSwitch+0x1b0>
 
         case TRANSITION:
             time = HAL_GetTick();
- 8000c00:	f000 f91e 	bl	8000e40 <HAL_GetTick>
- 8000c04:	4603      	mov	r3, r0
- 8000c06:	4a46      	ldr	r2, [pc, #280]	; (8000d20 <testStageTrafficlight+0x1c8>)
- 8000c08:	6013      	str	r3, [r2, #0]
-            while ((HAL_GetTick() - time) <= orangeDelay) {
- 8000c0a:	e042      	b.n	8000c92 <testStageTrafficlight+0x13a>
-            	// testBuffer[0] = stageTrafficlight(2) | stagePedestrianlight(1);
-
-            	if ((HAL_GetTick() - toggleTime) == toggle_TestFreq || fromActive == 0) {
- 8000c0c:	f000 f918 	bl	8000e40 <HAL_GetTick>
- 8000c10:	4602      	mov	r2, r0
- 8000c12:	4b49      	ldr	r3, [pc, #292]	; (8000d38 <testStageTrafficlight+0x1e0>)
- 8000c14:	681b      	ldr	r3, [r3, #0]
- 8000c16:	1ad3      	subs	r3, r2, r3
- 8000c18:	4a48      	ldr	r2, [pc, #288]	; (8000d3c <testStageTrafficlight+0x1e4>)
- 8000c1a:	8812      	ldrh	r2, [r2, #0]
- 8000c1c:	4293      	cmp	r3, r2
- 8000c1e:	d003      	beq.n	8000c28 <testStageTrafficlight+0xd0>
- 8000c20:	4b44      	ldr	r3, [pc, #272]	; (8000d34 <testStageTrafficlight+0x1dc>)
- 8000c22:	781b      	ldrb	r3, [r3, #0]
- 8000c24:	2b00      	cmp	r3, #0
- 8000c26:	d10b      	bne.n	8000c40 <testStageTrafficlight+0xe8>
-                    testBuffer[0] = stageTrafficlight(2) | stagePedestrianlight(1); // traffic light yellow, pedestrian light red
- 8000c28:	2002      	movs	r0, #2
- 8000c2a:	f7ff feed 	bl	8000a08 <stageTrafficlight>
- 8000c2e:	4604      	mov	r4, r0
- 8000c30:	2001      	movs	r0, #1
- 8000c32:	f7ff ff03 	bl	8000a3c <stagePedestrianlight>
- 8000c36:	4603      	mov	r3, r0
- 8000c38:	4323      	orrs	r3, r4
- 8000c3a:	4a37      	ldr	r2, [pc, #220]	; (8000d18 <testStageTrafficlight+0x1c0>)
- 8000c3c:	6013      	str	r3, [r2, #0]
- 8000c3e:	e025      	b.n	8000c8c <testStageTrafficlight+0x134>
-                } else if(HAL_GetTick() - toggleTime == toggle_TestFreq * 2 || (HAL_GetTick() - toggleTime) > toggle_TestFreq * 2 ){
  8000c40:	f000 f8fe 	bl	8000e40 <HAL_GetTick>
- 8000c44:	4602      	mov	r2, r0
- 8000c46:	4b3c      	ldr	r3, [pc, #240]	; (8000d38 <testStageTrafficlight+0x1e0>)
- 8000c48:	681b      	ldr	r3, [r3, #0]
- 8000c4a:	1ad3      	subs	r3, r2, r3
- 8000c4c:	4a3b      	ldr	r2, [pc, #236]	; (8000d3c <testStageTrafficlight+0x1e4>)
- 8000c4e:	8812      	ldrh	r2, [r2, #0]
- 8000c50:	0052      	lsls	r2, r2, #1
- 8000c52:	4293      	cmp	r3, r2
- 8000c54:	d00a      	beq.n	8000c6c <testStageTrafficlight+0x114>
- 8000c56:	f000 f8f3 	bl	8000e40 <HAL_GetTick>
- 8000c5a:	4602      	mov	r2, r0
- 8000c5c:	4b36      	ldr	r3, [pc, #216]	; (8000d38 <testStageTrafficlight+0x1e0>)
- 8000c5e:	681b      	ldr	r3, [r3, #0]
- 8000c60:	1ad3      	subs	r3, r2, r3
- 8000c62:	4a36      	ldr	r2, [pc, #216]	; (8000d3c <testStageTrafficlight+0x1e4>)
- 8000c64:	8812      	ldrh	r2, [r2, #0]
- 8000c66:	0052      	lsls	r2, r2, #1
- 8000c68:	4293      	cmp	r3, r2
- 8000c6a:	d90f      	bls.n	8000c8c <testStageTrafficlight+0x134>
-                    testBuffer[0] = stageTrafficlight(2) | stagePedestrianlight(4|1); // traffic light yellow
- 8000c6c:	2002      	movs	r0, #2
- 8000c6e:	f7ff fecb 	bl	8000a08 <stageTrafficlight>
- 8000c72:	4604      	mov	r4, r0
- 8000c74:	2005      	movs	r0, #5
- 8000c76:	f7ff fee1 	bl	8000a3c <stagePedestrianlight>
- 8000c7a:	4603      	mov	r3, r0
- 8000c7c:	4323      	orrs	r3, r4
- 8000c7e:	4a26      	ldr	r2, [pc, #152]	; (8000d18 <testStageTrafficlight+0x1c0>)
- 8000c80:	6013      	str	r3, [r2, #0]
-                    toggleTime = HAL_GetTick();
- 8000c82:	f000 f8dd 	bl	8000e40 <HAL_GetTick>
- 8000c86:	4603      	mov	r3, r0
- 8000c88:	4a2b      	ldr	r2, [pc, #172]	; (8000d38 <testStageTrafficlight+0x1e0>)
- 8000c8a:	6013      	str	r3, [r2, #0]
-                }
-                shiftWriteLED_Test(testBuffer);
- 8000c8c:	4822      	ldr	r0, [pc, #136]	; (8000d18 <testStageTrafficlight+0x1c0>)
- 8000c8e:	f000 f859 	bl	8000d44 <shiftWriteLED_Test>
+ 8000c44:	4603      	mov	r3, r0
+ 8000c46:	4a46      	ldr	r2, [pc, #280]	; (8000d60 <trafficSwitch+0x1c8>)
+ 8000c48:	6013      	str	r3, [r2, #0]
             while ((HAL_GetTick() - time) <= orangeDelay) {
- 8000c92:	f000 f8d5 	bl	8000e40 <HAL_GetTick>
- 8000c96:	4602      	mov	r2, r0
- 8000c98:	4b21      	ldr	r3, [pc, #132]	; (8000d20 <testStageTrafficlight+0x1c8>)
- 8000c9a:	681b      	ldr	r3, [r3, #0]
- 8000c9c:	1ad3      	subs	r3, r2, r3
- 8000c9e:	4a21      	ldr	r2, [pc, #132]	; (8000d24 <testStageTrafficlight+0x1cc>)
- 8000ca0:	8812      	ldrh	r2, [r2, #0]
- 8000ca2:	4293      	cmp	r3, r2
- 8000ca4:	d9b2      	bls.n	8000c0c <testStageTrafficlight+0xb4>
+ 8000c4a:	e042      	b.n	8000cd2 <trafficSwitch+0x13a>
+            	// ledBuffer[0] = stageTrafficlight(2) | stagePedestrianlight(1);
+
+            	if ((HAL_GetTick() - toggleTime) == toggleFreq || fromActive == 0) {
+ 8000c4c:	f000 f8f8 	bl	8000e40 <HAL_GetTick>
+ 8000c50:	4602      	mov	r2, r0
+ 8000c52:	4b49      	ldr	r3, [pc, #292]	; (8000d78 <trafficSwitch+0x1e0>)
+ 8000c54:	681b      	ldr	r3, [r3, #0]
+ 8000c56:	1ad3      	subs	r3, r2, r3
+ 8000c58:	4a48      	ldr	r2, [pc, #288]	; (8000d7c <trafficSwitch+0x1e4>)
+ 8000c5a:	8812      	ldrh	r2, [r2, #0]
+ 8000c5c:	4293      	cmp	r3, r2
+ 8000c5e:	d003      	beq.n	8000c68 <trafficSwitch+0xd0>
+ 8000c60:	4b44      	ldr	r3, [pc, #272]	; (8000d74 <trafficSwitch+0x1dc>)
+ 8000c62:	781b      	ldrb	r3, [r3, #0]
+ 8000c64:	2b00      	cmp	r3, #0
+ 8000c66:	d10b      	bne.n	8000c80 <trafficSwitch+0xe8>
+                    ledBuffer[0] = stageTrafficlight(2) | stagePedestrianlight(1); // traffic light yellow, pedestrian light red
+ 8000c68:	2002      	movs	r0, #2
+ 8000c6a:	f7ff feed 	bl	8000a48 <stageTrafficlight>
+ 8000c6e:	4604      	mov	r4, r0
+ 8000c70:	2001      	movs	r0, #1
+ 8000c72:	f7ff ff03 	bl	8000a7c <stagePedestrianlight>
+ 8000c76:	4603      	mov	r3, r0
+ 8000c78:	4323      	orrs	r3, r4
+ 8000c7a:	4a37      	ldr	r2, [pc, #220]	; (8000d58 <trafficSwitch+0x1c0>)
+ 8000c7c:	6013      	str	r3, [r2, #0]
+ 8000c7e:	e025      	b.n	8000ccc <trafficSwitch+0x134>
+                } else if(HAL_GetTick() - toggleTime == toggleFreq * 2 || (HAL_GetTick() - toggleTime) > toggleFreq * 2 ){
+ 8000c80:	f000 f8de 	bl	8000e40 <HAL_GetTick>
+ 8000c84:	4602      	mov	r2, r0
+ 8000c86:	4b3c      	ldr	r3, [pc, #240]	; (8000d78 <trafficSwitch+0x1e0>)
+ 8000c88:	681b      	ldr	r3, [r3, #0]
+ 8000c8a:	1ad3      	subs	r3, r2, r3
+ 8000c8c:	4a3b      	ldr	r2, [pc, #236]	; (8000d7c <trafficSwitch+0x1e4>)
+ 8000c8e:	8812      	ldrh	r2, [r2, #0]
+ 8000c90:	0052      	lsls	r2, r2, #1
+ 8000c92:	4293      	cmp	r3, r2
+ 8000c94:	d00a      	beq.n	8000cac <trafficSwitch+0x114>
+ 8000c96:	f000 f8d3 	bl	8000e40 <HAL_GetTick>
+ 8000c9a:	4602      	mov	r2, r0
+ 8000c9c:	4b36      	ldr	r3, [pc, #216]	; (8000d78 <trafficSwitch+0x1e0>)
+ 8000c9e:	681b      	ldr	r3, [r3, #0]
+ 8000ca0:	1ad3      	subs	r3, r2, r3
+ 8000ca2:	4a36      	ldr	r2, [pc, #216]	; (8000d7c <trafficSwitch+0x1e4>)
+ 8000ca4:	8812      	ldrh	r2, [r2, #0]
+ 8000ca6:	0052      	lsls	r2, r2, #1
+ 8000ca8:	4293      	cmp	r3, r2
+ 8000caa:	d90f      	bls.n	8000ccc <trafficSwitch+0x134>
+                    ledBuffer[0] = stageTrafficlight(2) | stagePedestrianlight(4|1); // traffic light yellow
+ 8000cac:	2002      	movs	r0, #2
+ 8000cae:	f7ff fecb 	bl	8000a48 <stageTrafficlight>
+ 8000cb2:	4604      	mov	r4, r0
+ 8000cb4:	2005      	movs	r0, #5
+ 8000cb6:	f7ff fee1 	bl	8000a7c <stagePedestrianlight>
+ 8000cba:	4603      	mov	r3, r0
+ 8000cbc:	4323      	orrs	r3, r4
+ 8000cbe:	4a26      	ldr	r2, [pc, #152]	; (8000d58 <trafficSwitch+0x1c0>)
+ 8000cc0:	6013      	str	r3, [r2, #0]
+                    toggleTime = HAL_GetTick();
+ 8000cc2:	f000 f8bd 	bl	8000e40 <HAL_GetTick>
+ 8000cc6:	4603      	mov	r3, r0
+ 8000cc8:	4a2b      	ldr	r2, [pc, #172]	; (8000d78 <trafficSwitch+0x1e0>)
+ 8000cca:	6013      	str	r3, [r2, #0]
+                }
+                shiftWriteLED(ledBuffer);
+ 8000ccc:	4822      	ldr	r0, [pc, #136]	; (8000d58 <trafficSwitch+0x1c0>)
+ 8000cce:	f7ff fe9b 	bl	8000a08 <shiftWriteLED>
+            while ((HAL_GetTick() - time) <= orangeDelay) {
+ 8000cd2:	f000 f8b5 	bl	8000e40 <HAL_GetTick>
+ 8000cd6:	4602      	mov	r2, r0
+ 8000cd8:	4b21      	ldr	r3, [pc, #132]	; (8000d60 <trafficSwitch+0x1c8>)
+ 8000cda:	681b      	ldr	r3, [r3, #0]
+ 8000cdc:	1ad3      	subs	r3, r2, r3
+ 8000cde:	4a21      	ldr	r2, [pc, #132]	; (8000d64 <trafficSwitch+0x1cc>)
+ 8000ce0:	8812      	ldrh	r2, [r2, #0]
+ 8000ce2:	4293      	cmp	r3, r2
+ 8000ce4:	d9b2      	bls.n	8000c4c <trafficSwitch+0xb4>
             }
 
             if (fromActive == 1) {
- 8000ca6:	4b23      	ldr	r3, [pc, #140]	; (8000d34 <testStageTrafficlight+0x1dc>)
- 8000ca8:	781b      	ldrb	r3, [r3, #0]
- 8000caa:	2b01      	cmp	r3, #1
- 8000cac:	d103      	bne.n	8000cb6 <testStageTrafficlight+0x15e>
+ 8000ce6:	4b23      	ldr	r3, [pc, #140]	; (8000d74 <trafficSwitch+0x1dc>)
+ 8000ce8:	781b      	ldrb	r3, [r3, #0]
+ 8000cea:	2b01      	cmp	r3, #1
+ 8000cec:	d103      	bne.n	8000cf6 <trafficSwitch+0x15e>
                 nextState = CROSSING;
- 8000cae:	4b20      	ldr	r3, [pc, #128]	; (8000d30 <testStageTrafficlight+0x1d8>)
- 8000cb0:	2202      	movs	r2, #2
- 8000cb2:	701a      	strb	r2, [r3, #0]
+ 8000cee:	4b20      	ldr	r3, [pc, #128]	; (8000d70 <trafficSwitch+0x1d8>)
+ 8000cf0:	2202      	movs	r2, #2
+ 8000cf2:	701a      	strb	r2, [r3, #0]
             } else {
                 nextState = ACTIVE;
             }
             break;
- 8000cb4:	e028      	b.n	8000d08 <testStageTrafficlight+0x1b0>
+ 8000cf4:	e028      	b.n	8000d48 <trafficSwitch+0x1b0>
                 nextState = ACTIVE;
- 8000cb6:	4b1e      	ldr	r3, [pc, #120]	; (8000d30 <testStageTrafficlight+0x1d8>)
- 8000cb8:	2200      	movs	r2, #0
- 8000cba:	701a      	strb	r2, [r3, #0]
+ 8000cf6:	4b1e      	ldr	r3, [pc, #120]	; (8000d70 <trafficSwitch+0x1d8>)
+ 8000cf8:	2200      	movs	r2, #0
+ 8000cfa:	701a      	strb	r2, [r3, #0]
             break;
- 8000cbc:	e024      	b.n	8000d08 <testStageTrafficlight+0x1b0>
+ 8000cfc:	e024      	b.n	8000d48 <trafficSwitch+0x1b0>
 
         case CROSSING:
         	fromActive = 0;
- 8000cbe:	4b1d      	ldr	r3, [pc, #116]	; (8000d34 <testStageTrafficlight+0x1dc>)
- 8000cc0:	2200      	movs	r2, #0
- 8000cc2:	701a      	strb	r2, [r3, #0]
+ 8000cfe:	4b1d      	ldr	r3, [pc, #116]	; (8000d74 <trafficSwitch+0x1dc>)
+ 8000d00:	2200      	movs	r2, #0
+ 8000d02:	701a      	strb	r2, [r3, #0]
             time = HAL_GetTick();
- 8000cc4:	f000 f8bc 	bl	8000e40 <HAL_GetTick>
- 8000cc8:	4603      	mov	r3, r0
- 8000cca:	4a15      	ldr	r2, [pc, #84]	; (8000d20 <testStageTrafficlight+0x1c8>)
- 8000ccc:	6013      	str	r3, [r2, #0]
+ 8000d04:	f000 f89c 	bl	8000e40 <HAL_GetTick>
+ 8000d08:	4603      	mov	r3, r0
+ 8000d0a:	4a15      	ldr	r2, [pc, #84]	; (8000d60 <trafficSwitch+0x1c8>)
+ 8000d0c:	6013      	str	r3, [r2, #0]
             while ((HAL_GetTick() - time) <= walkingDelay) {
- 8000cce:	e00d      	b.n	8000cec <testStageTrafficlight+0x194>
-                testBuffer[0] = stageTrafficlight(1) | stagePedestrianlight(2); // traffic light red, pedestrian light green
- 8000cd0:	2001      	movs	r0, #1
- 8000cd2:	f7ff fe99 	bl	8000a08 <stageTrafficlight>
- 8000cd6:	4604      	mov	r4, r0
- 8000cd8:	2002      	movs	r0, #2
- 8000cda:	f7ff feaf 	bl	8000a3c <stagePedestrianlight>
- 8000cde:	4603      	mov	r3, r0
- 8000ce0:	4323      	orrs	r3, r4
- 8000ce2:	4a0d      	ldr	r2, [pc, #52]	; (8000d18 <testStageTrafficlight+0x1c0>)
- 8000ce4:	6013      	str	r3, [r2, #0]
-                shiftWriteLED_Test(testBuffer);
- 8000ce6:	480c      	ldr	r0, [pc, #48]	; (8000d18 <testStageTrafficlight+0x1c0>)
- 8000ce8:	f000 f82c 	bl	8000d44 <shiftWriteLED_Test>
+ 8000d0e:	e00d      	b.n	8000d2c <trafficSwitch+0x194>
+                ledBuffer[0] = stageTrafficlight(1) | stagePedestrianlight(2); // traffic light red, pedestrian light green
+ 8000d10:	2001      	movs	r0, #1
+ 8000d12:	f7ff fe99 	bl	8000a48 <stageTrafficlight>
+ 8000d16:	4604      	mov	r4, r0
+ 8000d18:	2002      	movs	r0, #2
+ 8000d1a:	f7ff feaf 	bl	8000a7c <stagePedestrianlight>
+ 8000d1e:	4603      	mov	r3, r0
+ 8000d20:	4323      	orrs	r3, r4
+ 8000d22:	4a0d      	ldr	r2, [pc, #52]	; (8000d58 <trafficSwitch+0x1c0>)
+ 8000d24:	6013      	str	r3, [r2, #0]
+                shiftWriteLED(ledBuffer);
+ 8000d26:	480c      	ldr	r0, [pc, #48]	; (8000d58 <trafficSwitch+0x1c0>)
+ 8000d28:	f7ff fe6e 	bl	8000a08 <shiftWriteLED>
             while ((HAL_GetTick() - time) <= walkingDelay) {
- 8000cec:	f000 f8a8 	bl	8000e40 <HAL_GetTick>
- 8000cf0:	4602      	mov	r2, r0
- 8000cf2:	4b0b      	ldr	r3, [pc, #44]	; (8000d20 <testStageTrafficlight+0x1c8>)
- 8000cf4:	681b      	ldr	r3, [r3, #0]
- 8000cf6:	1ad3      	subs	r3, r2, r3
- 8000cf8:	4a11      	ldr	r2, [pc, #68]	; (8000d40 <testStageTrafficlight+0x1e8>)
- 8000cfa:	8812      	ldrh	r2, [r2, #0]
- 8000cfc:	4293      	cmp	r3, r2
- 8000cfe:	d9e7      	bls.n	8000cd0 <testStageTrafficlight+0x178>
+ 8000d2c:	f000 f888 	bl	8000e40 <HAL_GetTick>
+ 8000d30:	4602      	mov	r2, r0
+ 8000d32:	4b0b      	ldr	r3, [pc, #44]	; (8000d60 <trafficSwitch+0x1c8>)
+ 8000d34:	681b      	ldr	r3, [r3, #0]
+ 8000d36:	1ad3      	subs	r3, r2, r3
+ 8000d38:	4a11      	ldr	r2, [pc, #68]	; (8000d80 <trafficSwitch+0x1e8>)
+ 8000d3a:	8812      	ldrh	r2, [r2, #0]
+ 8000d3c:	4293      	cmp	r3, r2
+ 8000d3e:	d9e7      	bls.n	8000d10 <trafficSwitch+0x178>
             }
             nextState = TRANSITION;
- 8000d00:	4b0b      	ldr	r3, [pc, #44]	; (8000d30 <testStageTrafficlight+0x1d8>)
- 8000d02:	2201      	movs	r2, #1
- 8000d04:	701a      	strb	r2, [r3, #0]
+ 8000d40:	4b0b      	ldr	r3, [pc, #44]	; (8000d70 <trafficSwitch+0x1d8>)
+ 8000d42:	2201      	movs	r2, #1
+ 8000d44:	701a      	strb	r2, [r3, #0]
             break;
- 8000d06:	bf00      	nop
+ 8000d46:	bf00      	nop
         }
         state = nextState;
- 8000d08:	4b09      	ldr	r3, [pc, #36]	; (8000d30 <testStageTrafficlight+0x1d8>)
- 8000d0a:	781a      	ldrb	r2, [r3, #0]
- 8000d0c:	4b01      	ldr	r3, [pc, #4]	; (8000d14 <testStageTrafficlight+0x1bc>)
- 8000d0e:	701a      	strb	r2, [r3, #0]
+ 8000d48:	4b09      	ldr	r3, [pc, #36]	; (8000d70 <trafficSwitch+0x1d8>)
+ 8000d4a:	781a      	ldrb	r2, [r3, #0]
+ 8000d4c:	4b01      	ldr	r3, [pc, #4]	; (8000d54 <trafficSwitch+0x1bc>)
+ 8000d4e:	701a      	strb	r2, [r3, #0]
         switch (state) {
- 8000d10:	e727      	b.n	8000b62 <testStageTrafficlight+0xa>
- 8000d12:	bf00      	nop
- 8000d14:	200001b4 	.word	0x200001b4
- 8000d18:	200001ac 	.word	0x200001ac
- 8000d1c:	200001b0 	.word	0x200001b0
- 8000d20:	200001b8 	.word	0x200001b8
- 8000d24:	20000004 	.word	0x20000004
- 8000d28:	200001c0 	.word	0x200001c0
- 8000d2c:	20000006 	.word	0x20000006
- 8000d30:	200001b5 	.word	0x200001b5
- 8000d34:	200001a8 	.word	0x200001a8
- 8000d38:	200001bc 	.word	0x200001bc
- 8000d3c:	2000000a 	.word	0x2000000a
- 8000d40:	20000008 	.word	0x20000008
-
-08000d44 <shiftWriteLED_Test>:
-
-	HAL_GPIO_WritePin(STCP_595_GPIO_Port, STCP_595_Pin, GPIO_PIN_SET);
-	HAL_GPIO_WritePin(STCP_595_GPIO_Port, STCP_595_Pin, GPIO_PIN_RESET);
-}
-
-void shiftWriteLED_Test(uint32_t testBuffer[]) {
- 8000d44:	b580      	push	{r7, lr}
- 8000d46:	b082      	sub	sp, #8
- 8000d48:	af00      	add	r7, sp, #0
- 8000d4a:	6078      	str	r0, [r7, #4]
-	HAL_SPI_Transmit(&hspi3, (uint8_t*)&testBuffer[0], 3, HAL_MAX_DELAY);
- 8000d4c:	f04f 33ff 	mov.w	r3, #4294967295
- 8000d50:	2203      	movs	r2, #3
- 8000d52:	6879      	ldr	r1, [r7, #4]
- 8000d54:	4809      	ldr	r0, [pc, #36]	; (8000d7c <shiftWriteLED_Test+0x38>)
- 8000d56:	f002 febe 	bl	8003ad6 <HAL_SPI_Transmit>
-
-	HAL_GPIO_WritePin(STCP_595_GPIO_Port, STCP_595_Pin, GPIO_PIN_SET);
- 8000d5a:	2201      	movs	r2, #1
- 8000d5c:	f44f 5180 	mov.w	r1, #4096	; 0x1000
- 8000d60:	4807      	ldr	r0, [pc, #28]	; (8000d80 <shiftWriteLED_Test+0x3c>)
- 8000d62:	f001 fac1 	bl	80022e8 <HAL_GPIO_WritePin>
-	HAL_GPIO_WritePin(STCP_595_GPIO_Port, STCP_595_Pin, GPIO_PIN_RESET);
- 8000d66:	2200      	movs	r2, #0
- 8000d68:	f44f 5180 	mov.w	r1, #4096	; 0x1000
- 8000d6c:	4804      	ldr	r0, [pc, #16]	; (8000d80 <shiftWriteLED_Test+0x3c>)
- 8000d6e:	f001 fabb 	bl	80022e8 <HAL_GPIO_WritePin>
-}
- 8000d72:	bf00      	nop
- 8000d74:	3708      	adds	r7, #8
- 8000d76:	46bd      	mov	sp, r7
- 8000d78:	bd80      	pop	{r7, pc}
- 8000d7a:	bf00      	nop
- 8000d7c:	200000f8 	.word	0x200000f8
- 8000d80:	48000400 	.word	0x48000400
+ 8000d50:	e727      	b.n	8000ba2 <trafficSwitch+0xa>
+ 8000d52:	bf00      	nop
+ 8000d54:	200001c0 	.word	0x200001c0
+ 8000d58:	200001ac 	.word	0x200001ac
+ 8000d5c:	200001b0 	.word	0x200001b0
+ 8000d60:	200001b4 	.word	0x200001b4
+ 8000d64:	20000006 	.word	0x20000006
+ 8000d68:	200001bc 	.word	0x200001bc
+ 8000d6c:	20000008 	.word	0x20000008
+ 8000d70:	200001c1 	.word	0x200001c1
+ 8000d74:	200001a8 	.word	0x200001a8
+ 8000d78:	200001b8 	.word	0x200001b8
+ 8000d7c:	20000004 	.word	0x20000004
+ 8000d80:	2000000a 	.word	0x2000000a
 
 08000d84 <Reset_Handler>:
 
